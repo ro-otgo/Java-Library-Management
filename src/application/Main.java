@@ -17,8 +17,10 @@ public class Main extends Application {
 			fxmlLoader.setController(mainController);
 			Parent root = fxmlLoader.load();
 			
-			Scene scene = new Scene(root,400,400);
+			Scene scene = new Scene(root,873,600);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+
+			primaryStage.setTitle("Java Library Management");
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {

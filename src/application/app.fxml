@@ -1,12 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="600.0" minWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane minHeight="600.0" minWidth="400.0" prefHeight="600.0" prefWidth="873.0" style="-fx-background-color: #20120F;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <JFXButton fx:id="detallesLibroButton" layoutX="157.0" layoutY="250.0" onAction="#verDetallesLibro" text="Detalles libro" />
-      <Label layoutX="85.0" layoutY="69.0" prefHeight="45.0" prefWidth="230.0" text="Prueba 2" />
+      <Label layoutX="24.0" layoutY="14.0" prefHeight="45.0" prefWidth="230.0" text="Prueba 2" />
+      <AnchorPane layoutX="429.0" layoutY="106.0" prefHeight="403.0" prefWidth="355.0" style="-fx-background-color: #9C2B27;">
+         <children>
+            <JFXTextField focusColor="#6cd044" layoutX="39.0" layoutY="139.0" prefHeight="25.0" prefWidth="240.0" promptText="Usuario/email" unFocusColor="#e4dcdc" />
+            <JFXPasswordField focusColor="#6cd044" layoutX="39.0" layoutY="223.0" prefHeight="25.0" prefWidth="240.0" promptText="Contraseña" unFocusColor="#d7cccc" />
+            <JFXButton fx:id="detallesLibroButton" layoutX="41.0" layoutY="377.0" onAction="#verDetallesLibro" text="Detalles libro" />
+            <JFXButton layoutX="46.0" layoutY="306.0" prefHeight="25.0" prefWidth="240.0" style="-fx-background-color: #E45652;" text="Sign in" textFill="WHITE" />
+            <Label layoutX="84.0" layoutY="57.0" prefHeight="27.0" prefWidth="155.0" text="Pantalla de logueo" textFill="#dad5d5">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Hyperlink layoutX="117.0" layoutY="354.0" text="Olvido de contraseña" />
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="295.0" fitWidth="378.0" layoutX="24.0" layoutY="181.0" opacity="0.3" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/inaki-del-olmo-NIJuEQw0RKg-unsplash.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="90.0" layoutY="228.0" text="Bienvenido a JLM" textFill="#d7d2d2">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="90.0" layoutY="346.0" prefHeight="25.0" prefWidth="164.0" style="-fx-background-color: #E45652;" text="Sign up" textFill="WHITE" />
+      <Label layoutX="90.0" layoutY="283.0" prefHeight="34.0" prefWidth="261.0" text="Bienvenido a Java Library Management&#10;,su sistema organizador de biblotecas preferido&#10;&#10;" textFill="#cdc8c8" />
    </children>
 </AnchorPane>
