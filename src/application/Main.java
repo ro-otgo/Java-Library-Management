@@ -12,13 +12,13 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/application/app.fxml"));
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vistas/app.fxml"));
 			MainController mainController = new MainController();
 			fxmlLoader.setController(mainController);
 			Parent root = fxmlLoader.load();
 			
 			Scene scene = new Scene(root,873,600);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			scene.getStylesheets().add(getClass().getResource("/vistas/styles/application.css").toExternalForm());
 
 			primaryStage.setTitle("Java Library Management");
 			primaryStage.setScene(scene);
