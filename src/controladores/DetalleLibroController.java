@@ -11,8 +11,14 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import modelos.Libro;
 
 public class DetalleLibroController {
+	
+	private static final String TEXT_RESERVADO = "Reservado";
+	private static final String TEXT_DISPONIBLE = "Disponible";
+	
+	private Libro libro;
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -40,7 +46,12 @@ public class DetalleLibroController {
 
     @FXML
     void reservarLibro(ActionEvent event) {
-    	reservadoLabel.setText("Reservado");
+    	libro.setReservado(!libro.isReservado());
+    	if (libro.isReservado()) {
+        	reservadoLabel.setText(TEXT_RESERVADO);
+    	}else {
+    		reservadoLabel.setText(TEXT_DISPONIBLE);
+    	}
     	System.out.println("Se ha pulsado reservar libro");
     }
 
@@ -58,6 +69,26 @@ public class DetalleLibroController {
         assert reservarButton != null : "fx:id=\"reservarButton\" was not injected: check your FXML file 'DetalleLibro.fxml'.";
         assert volverButton != null : "fx:id=\"volverButton\" was not injected: check your FXML file 'DetalleLibro.fxml'.";
     	System.out.println("Se ha creado la vista");
+    	
+    	if (libro!=null) {
+    		idLabel.setText(String.valueOf(libro.getId()));
+    		tituloLabel.setText(libro.getTitulo());
+    		ISBNLabel.setText(libro.getIsbn());
+    		if (libro.isReservado()) {
+        		reservadoLabel.setText(TEXT_RESERVADO);
+    		}else {
+        		reservadoLabel.setText(TEXT_DISPONIBLE);
+    		}
+    	}
 
     }
+
+	public Libro getLibro() {
+		return libro;
+	}
+
+	public void setLibro(Libro libro) {
+		this.libro = libro;
+	}
+    
 }
