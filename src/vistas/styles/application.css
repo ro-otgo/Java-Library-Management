@@ -1,1 +1,29 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+.primary-color-light{
+	-fx-background-color: #ff887c;
+}
+
+.primary-color-dark, .dark-button{
+	-fx-background-color: #ac2027;
+}
+
+.primary-color, .primary-button{
+	-fx-background-color: #E45650;
+}
+
+.primary-button {
+	-fx-text-fill: #ffffff;
+}
+
+.dark-button {
+	-fx-text-fill: #ffffff;
+}
+
+.detalle-padding{
+	-fx-padding: 10px;
+}
+
+.detalle-contenido{
+	-fx-alignment: center;
+}

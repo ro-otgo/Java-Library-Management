@@ -10,11 +10,21 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import modelos.Libro;
 
 public class DetalleLibroController {
+	// Constante tamano: Ancho
+	public static final double MIN_WIDTH= 400;
+	// Constante tamano: Largo
+	public static final double MIN_HEIGHT= 500;
+	// Nombre vista
+	public static final String NOMBRE_VENTANA = "Detalles Libro";
 	
+	// Constante estado reserva libro
 	private static final String TEXT_RESERVADO = "Reservado";
 	private static final String TEXT_DISPONIBLE = "Disponible";
 	
@@ -44,6 +54,10 @@ public class DetalleLibroController {
     @FXML // fx:id="volverButton"
     private JFXButton volverButton; // Value injected by FXMLLoader
 
+    /**
+     * Reserva de libro
+     * @param event
+     */
     @FXML
     void reservarLibro(ActionEvent event) {
     	libro.setReservado(!libro.isReservado());
@@ -55,11 +69,21 @@ public class DetalleLibroController {
     	System.out.println("Se ha pulsado reservar libro");
     }
 
+    /**
+     * Boton para salir de la vista detalle
+     * @param event
+     */
     @FXML
     void volverAtras(ActionEvent event) {
     	System.out.println("Se ha pulsado volver atras");
+    	Node source = (Node) event.getSource();
+    	Stage stage = (Stage) source.getScene().getWindow();
+    	stage.close();
     }
 
+    /**
+     * Inicializacion
+     */
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert idLabel != null : "fx:id=\"idLabel\" was not injected: check your FXML file 'DetalleLibro.fxml'.";
@@ -68,9 +92,15 @@ public class DetalleLibroController {
         assert reservadoLabel != null : "fx:id=\"reservadoLabel\" was not injected: check your FXML file 'DetalleLibro.fxml'.";
         assert reservarButton != null : "fx:id=\"reservarButton\" was not injected: check your FXML file 'DetalleLibro.fxml'.";
         assert volverButton != null : "fx:id=\"volverButton\" was not injected: check your FXML file 'DetalleLibro.fxml'.";
+    	populateVista();
     	System.out.println("Se ha creado la vista");
-    	
-    	if (libro!=null) {
+    }
+
+    /**
+     * Cargar datos del libro en la vista
+     */
+	private void populateVista() {
+		if (libro!=null) {
     		idLabel.setText(String.valueOf(libro.getId()));
     		tituloLabel.setText(libro.getTitulo());
     		ISBNLabel.setText(libro.getIsbn());
@@ -80,8 +110,7 @@ public class DetalleLibroController {
         		reservadoLabel.setText(TEXT_DISPONIBLE);
     		}
     	}
-
-    }
+	}
 
 	public Libro getLibro() {
 		return libro;
