@@ -11,7 +11,7 @@
 .primary-color, .primary-button{
 	-fx-background-color: #E45650;
 }
-
+singleton
 .primary-button {
 	-fx-text-fill: #ffffff;
 }

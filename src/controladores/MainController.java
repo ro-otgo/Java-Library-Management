@@ -28,6 +28,24 @@ public class MainController {
 
 	@FXML // fx:id="detallesLibroButton"
 	private JFXButton detallesLibroButton; // Value injected by FXMLLoader
+	
+	@FXML
+    private JFXButton signInButton;
+
+	/*
+	 * @author Javier
+	 * Código de prueba para que entre directamente en la vista del bibiliotecario
+	 * */
+    @FXML
+    void signIn(ActionEvent event) {
+    	try {
+			System.out.println("Vista bibliotecario");
+			mostrarVistaPantallaBibliotecario();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
 
 	@FXML
 	void verDetallesLibro(ActionEvent event) {
@@ -72,6 +90,16 @@ public class MainController {
 		stage.show();
 	}
 
+	private void mostrarVistaPantallaBibliotecario() throws IOException{
+		FXMLLoader loaderPantallaBibliotecario = new FXMLLoader(getClass().getResource("/vistas/PantallaBibliotecario.fxml"));
+		BibliotecarioController pantallaBibliotecarioController = new BibliotecarioController();
+		loaderPantallaBibliotecario.setController(pantallaBibliotecarioController);
+		Parent root = loaderPantallaBibliotecario.load();
+		Stage stage = new Stage();
+		stage.setScene(new Scene(root));
+		stage.show();
+	}
+	
 	@FXML // This method is called by the FXMLLoader when initialization is complete
 	void initialize() {
 		assert detallesLibroButton != null
