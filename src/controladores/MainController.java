@@ -5,6 +5,8 @@ package controladores;
  */
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 
 import java.io.IOException;
 import java.net.URL;
@@ -14,12 +16,21 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import modelos.Libro;
 import repositorios.LibreriaSingleton;
 
 public class MainController {
 
+	@FXML
+	private JFXTextField username;
+	@FXML
+	private JFXPasswordField password;
+	@FXML
+	private Label wrongLogIn;	
+	
+	    
 	@FXML // ResourceBundle that was given to the FXMLLoader
 	private ResourceBundle resources;
 
@@ -34,17 +45,45 @@ public class MainController {
 
 	/*
 	 * @author Javier
-	 * Código de prueba para que entre directamente en la vista del bibiliotecario
+	 * Cï¿½digo de prueba para que entre directamente en la vista del bibiliotecario
 	 * */
     @FXML
-    void signIn(ActionEvent event) {
-    	try {
+    void signIn(ActionEvent event) throws IOException {
+    	
+        //Usuarios registrados
+        if(username.getText().toString().equals("Angel") && password.getText().toString().equals("123")) {
+            wrongLogIn.setText("Success!");
+
+            mostrarVistaPantallaBibliotecario();
+        }
+        else if(username.getText().toString().equals("Javier") && password.getText().toString().equals("123")) {
+            wrongLogIn.setText("Success!");
+
+            mostrarVistaPantallaBibliotecario();
+
+        }
+        else if(username.getText().toString().equals("Rodrigo") && password.getText().toString().equals("123")) {
+            wrongLogIn.setText("Success!");
+            mostrarVistaPantallaBibliotecario();
+        }
+        
+        //Campo vacio
+        else if(username.getText().isEmpty() || password.getText().isEmpty()) {
+            wrongLogIn.setText("Porfavor introduce tus datos.");
+        }
+
+        //Contrasena o usuario incorrectos
+        else {
+            wrongLogIn.setText("Usuario o contrasena incorrectos!");
+        }	
+    	
+    	/**try {
 			System.out.println("Vista bibliotecario");
 			mostrarVistaPantallaBibliotecario();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
     }
 
 	@FXML
