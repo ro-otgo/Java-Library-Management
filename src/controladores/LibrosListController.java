@@ -4,6 +4,8 @@
 package controladores;
 
 import com.jfoenix.controls.JFXListView;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -13,18 +15,49 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 import javafx.util.Callback;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import modelos.Libro;
+import repositorios.LibreriaSingleton;
 
+/**
+ * Lista de libros en la aplicacion
+ * @author Rodrigo
+ *
+ */
 public class LibrosListController {
+	
+	public static void mostarLibrosList(Scene scene)  throws IOException{
+		// Mostrar vista lista libro
+		FXMLLoader loaderListaLibros = new FXMLLoader(LibrosListController.class.getResource("/vistas/LibrosList.fxml"));
+		LibrosListController listaLibroController = new LibrosListController(LibreriaSingleton.getLibreria().getLibros());
+		loaderListaLibros.setController(listaLibroController);
+		Parent root = loaderListaLibros.load();
+		Stage stage = new Stage();
+		stage.setScene(new Scene(root));
+		stage.setTitle(LibrosListController.NOMBRE_VENTANA);
+		stage.setMinHeight(LibrosListController.MIN_HEIGHT);
+		stage.setMinWidth(LibrosListController.MIN_WIDTH);
+		stage.getIcons().add(new Image("/img/logo.jpg"));
+		stage.initModality(Modality.WINDOW_MODAL);
+		stage.initOwner(scene.getWindow());
+		stage.show();
+	}
 	
 	// Constante tamano: Ancho
 	public static final double MIN_WIDTH= 500;

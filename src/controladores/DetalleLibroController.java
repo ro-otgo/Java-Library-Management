@@ -6,19 +6,54 @@ package controladores;
  */
 
 import com.jfoenix.controls.JFXButton;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Control;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import modelos.Libro;
 
+/**
+ * Detalles libros
+ * @author Rodrigo
+ *
+ */
 public class DetalleLibroController {
+
+	/**
+	 * Mostrar vista detalles del libro seleccionado
+	 * @throws IOException
+	 */
+	public static void mostrarVistaDetallesLibro(Libro libro, Control control) throws IOException {
+		// Mostrar vista ver detalles libro
+		FXMLLoader loaderDetallesLibro = new FXMLLoader(DetalleLibroController.class.getResource("/vistas/DetalleLibro.fxml"));
+		DetalleLibroController detallesLibroController = new DetalleLibroController();
+		loaderDetallesLibro.setController(detallesLibroController);
+		detallesLibroController.setLibro(libro);
+		Parent root = loaderDetallesLibro.load();
+		Stage stage = new Stage();
+		stage.setScene(new Scene(root));
+		stage.initModality(Modality.WINDOW_MODAL);
+		stage.initOwner(control.getScene().getWindow());
+		stage.setTitle(DetalleLibroController.NOMBRE_VENTANA);
+		stage.setMinHeight(DetalleLibroController.MIN_HEIGHT);
+		stage.setMinWidth(DetalleLibroController.MIN_WIDTH);
+		stage.getIcons().add(new Image("/img/logo.jpg"));
+		stage.show();
+	}
+	
 	// Constante tamano: Ancho
-	public static final double MIN_WIDTH= 400;
+	public static final double MIN_WIDTH= 500;
 	// Constante tamano: Largo
 	public static final double MIN_HEIGHT= 500;
 	// Nombre vista
@@ -75,7 +110,6 @@ public class DetalleLibroController {
      */
     @FXML
     void volverAtras(ActionEvent event) {
-    	System.out.println("Se ha pulsado volver atras");
     	Node source = (Node) event.getSource();
     	Stage stage = (Stage) source.getScene().getWindow();
     	stage.close();

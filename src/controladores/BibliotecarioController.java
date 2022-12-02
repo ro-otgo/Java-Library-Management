@@ -14,10 +14,25 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import repositorios.LibreriaSingleton;
 
 public class BibliotecarioController {
+	
+	public static void mostrarVistaPantallaBibliotecario(String nombreBibliotecario) throws IOException{
+		FXMLLoader loaderPantallaBibliotecario = new FXMLLoader(BibliotecarioController.class.getResource("/vistas/PantallaBibliotecario.fxml"));
+		BibliotecarioController pantallaBibliotecarioController = new BibliotecarioController();
+		loaderPantallaBibliotecario.setController(pantallaBibliotecarioController);
+		Parent root = loaderPantallaBibliotecario.load();
+		Stage stage = new Stage();
+		stage.setScene(new Scene(root));
+		stage.getIcons().add(new Image("/img/logo.jpg"));
+		pantallaBibliotecarioController.bibliotecarioLabel.setText(nombreBibliotecario);
+		stage.show();
+	}
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -45,6 +60,9 @@ public class BibliotecarioController {
     
     @FXML // fx:id="signOutButton"
     private JFXButton signOutButton; // Value injected by FXMLLoader
+    
+    @FXML
+    private Label bibliotecarioLabel;
 
     
     @FXML
@@ -57,7 +75,7 @@ public class BibliotecarioController {
 
     }
 
-    // Falta añadir que cierre todas las ventanas abiertas (detalle libros, añadir libro, etc) no solo PantallaBibliotecario
+    // Falta aÃ±adir que cierre todas las ventanas abiertas (detalle libros, aÃ±adir libro, etc) no solo PantallaBibliotecario
     @FXML
     void cerrarSesion(ActionEvent event) {
     	System.out.println("Se ha pulsado Sign out");
@@ -84,36 +102,17 @@ public class BibliotecarioController {
 
     @FXML
     void verDetallesLibro(ActionEvent event) {
-        /*
-         * @author Javier
-         * Código para prueba copiado  del metodo verDetallesLibro() de MainController.java
-         * */
 		try {
-			System.out.println("Ver detalles libro");
-			mostrarVistaListaLibro();
-//			mostrarVistaDetallesLibro();
+			Node source = (Node) event.getSource();
+	    	Scene scene = (Scene) source.getScene();
+			mostrarVistaListaLibro(scene);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }
     
-    /*
-     * @author Javier
-     * Metodo para prueba copiado de MainController.java
-     * */
-    private void mostrarVistaListaLibro() throws IOException{
-		// Mostrar vista lista libro
-		FXMLLoader loaderListaLibros = new FXMLLoader(getClass().getResource("/vistas/LibrosList.fxml"));
-		LibrosListController listaLibroController = new LibrosListController(LibreriaSingleton.getLibreria().getLibros());
-		loaderListaLibros.setController(listaLibroController);
-		Parent root = loaderListaLibros.load();
-		Stage stage = new Stage();
-		stage.setScene(new Scene(root));
-		stage.setTitle(LibrosListController.NOMBRE_VENTANA);
-		stage.setMinHeight(LibrosListController.MIN_HEIGHT);
-		stage.setMinWidth(LibrosListController.MIN_WIDTH);
-		stage.show();
+    private void mostrarVistaListaLibro(Scene scene) throws IOException{
+    	LibrosListController.mostarLibrosList(scene);
 	}
 
     @FXML // This method is called by the FXMLLoader when initialization is complete

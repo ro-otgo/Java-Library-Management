@@ -16,6 +16,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -116,21 +117,7 @@ public class LibroListaCell extends ListCell<Libro>{
 	 * @throws IOException
 	 */
 	private void mostrarVistaDetallesLibro() throws IOException {
-		// Mostrar vista ver detalles libro
-		FXMLLoader loaderDetallesLibro = new FXMLLoader(getClass().getResource("/vistas/DetalleLibro.fxml"));
-		DetalleLibroController detallesLibroController = new DetalleLibroController();
-		loaderDetallesLibro.setController(detallesLibroController);
-		detallesLibroController.setLibro(libro);
-		Parent root = loaderDetallesLibro.load();
-		Stage stage = new Stage();
-		stage.setScene(new Scene(root));
-		stage.initModality(Modality.WINDOW_MODAL);
-		stage.initOwner(this.getScene().getWindow());
-		stage.setTitle(DetalleLibroController.NOMBRE_VENTANA);
-		stage.setMinHeight(DetalleLibroController.MIN_HEIGHT);
-		stage.setMinWidth(DetalleLibroController.MIN_WIDTH);
-		stage.show();
-		
+		DetalleLibroController.mostrarVistaDetallesLibro(libro, this);
 	}
 
 

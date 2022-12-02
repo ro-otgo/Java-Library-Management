@@ -10,14 +10,19 @@ import com.jfoenix.controls.JFXTextField;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import modelos.Libro;
 import repositorios.LibreriaSingleton;
 
@@ -42,6 +47,8 @@ public class MainController {
 	
 	@FXML
     private JFXButton signInButton;
+	
+	private Map<String,String> usuarios;
 
 	/*
 	 * @author Javier
@@ -49,94 +56,38 @@ public class MainController {
 	 * */
     @FXML
     void signIn(ActionEvent event) throws IOException {
+		Node source = (Node) event.getSource();
+    	Stage stage = (Stage) source.getScene().getWindow();
     	
-        //Usuarios registrados
-        if(username.getText().toString().equals("Angel") && password.getText().toString().equals("123")) {
-            wrongLogIn.setText("Success!");
-
-            mostrarVistaPantallaBibliotecario();
-        }
-        else if(username.getText().toString().equals("Javier") && password.getText().toString().equals("123")) {
-            wrongLogIn.setText("Success!");
-
-            mostrarVistaPantallaBibliotecario();
-
-        }
-        else if(username.getText().toString().equals("Rodrigo") && password.getText().toString().equals("123")) {
-            wrongLogIn.setText("Success!");
-            mostrarVistaPantallaBibliotecario();
-        }
-        
         //Campo vacio
-        else if(username.getText().isEmpty() || password.getText().isEmpty()) {
+    	if(username.getText().isEmpty() || password.getText().isEmpty()) {
             wrongLogIn.setText("Porfavor introduce tus datos.");
+        }else {
+        	boolean resultado = validarUsuario(username.getText(),password.getText());
+        	if(resultado) {
+                wrongLogIn.setText("Success!");
+                mostrarVistaPantallaBibliotecario(stage,username.getText().toString());
+        	}
+            //Contrasena o usuario incorrectos
+            else {
+                wrongLogIn.setText("Usuario o contrasena incorrectos!");
+            }	
         }
-
-        //Contrasena o usuario incorrectos
-        else {
-            wrongLogIn.setText("Usuario o contrasena incorrectos!");
-        }	
-    	
-    	/**try {
-			System.out.println("Vista bibliotecario");
-			mostrarVistaPantallaBibliotecario();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
     }
+    
+    private boolean validarUsuario(String username, String password) {
+    	String usuarioPwd = usuarios.getOrDefault(username,null);
+    	if (usuarioPwd!=null) {
+    		return usuarioPwd.equals(password);
+    	}
+    	return false;
+    }
+    
 
-	@FXML
-	void verDetallesLibro(ActionEvent event) {
-		try {
-			System.out.println("Ver detalles libro");
-			mostrarVistaListaLibro();
-//			mostrarVistaDetallesLibro();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
 	
-	private void mostrarVistaListaLibro() throws IOException{
-		// Mostrar vista lista libro
-		FXMLLoader loaderListaLibros = new FXMLLoader(getClass().getResource("/vistas/LibrosList.fxml"));
-		LibrosListController listaLibroController = new LibrosListController(LibreriaSingleton.getLibreria().getLibros());
-		loaderListaLibros.setController(listaLibroController);
-		Parent root = loaderListaLibros.load();
-		Stage stage = new Stage();
-		stage.setScene(new Scene(root));
-		stage.setTitle(LibrosListController.NOMBRE_VENTANA);
-		stage.setMinHeight(LibrosListController.MIN_HEIGHT);
-		stage.setMinWidth(LibrosListController.MIN_WIDTH);
-		stage.show();
-	}
-
-	private void mostrarVistaDetallesLibro() throws IOException {
-		// Mostrar vista ver detalles libro
-		FXMLLoader loaderDetallesLibro = new FXMLLoader(getClass().getResource("/vistas/DetalleLibro.fxml"));
-		DetalleLibroController detallesLibroController = new DetalleLibroController();
-		Libro libro = new Libro();
-		libro.setIsbn("ABC");
-		libro.setNombre("Titulo Libro");
-		libro.setReservado(false);
-		loaderDetallesLibro.setController(detallesLibroController);
-		detallesLibroController.setLibro(libro);
-		Parent root = loaderDetallesLibro.load();
-		Stage stage = new Stage();
-		stage.setScene(new Scene(root));
-		stage.show();
-	}
-
-	private void mostrarVistaPantallaBibliotecario() throws IOException{
-		FXMLLoader loaderPantallaBibliotecario = new FXMLLoader(getClass().getResource("/vistas/PantallaBibliotecario.fxml"));
-		BibliotecarioController pantallaBibliotecarioController = new BibliotecarioController();
-		loaderPantallaBibliotecario.setController(pantallaBibliotecarioController);
-		Parent root = loaderPantallaBibliotecario.load();
-		Stage stage = new Stage();
-		stage.setScene(new Scene(root));
-		stage.show();
+	private void mostrarVistaPantallaBibliotecario(Stage stage, String nombreBibliotecario) throws IOException{
+		BibliotecarioController.mostrarVistaPantallaBibliotecario(nombreBibliotecario);
+    	stage.close();
 	}
 	
 	@FXML // This method is called by the FXMLLoader when initialization is complete
@@ -144,5 +95,9 @@ public class MainController {
 		assert detallesLibroButton != null
 				: "fx:id=\"detallesLibroButton\" was not injected: check your FXML file 'app.fxml'.";
 
+	}
+
+	public void setUsuarios(Map<String, String> loadUsers) {
+		this.usuarios = loadUsers;
 	}
 }
