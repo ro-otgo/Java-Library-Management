@@ -15,7 +15,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vistas/app.fxml"));
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vistas/login.fxml"));
 			MainController mainController = new MainController();
 			fxmlLoader.setController(mainController);
 			Parent root = fxmlLoader.load();

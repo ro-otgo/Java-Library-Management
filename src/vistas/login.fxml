@@ -10,15 +10,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="600.0" minWidth="400.0" prefHeight="600.0" prefWidth="873.0" style="-fx-background-color: #20120F;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane minHeight="600.0" minWidth="400.0" prefHeight="600.0" prefWidth="873.0" styleClass="background-window" stylesheets="@styles/application.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="24.0" layoutY="14.0" prefHeight="45.0" prefWidth="230.0" />
-      <AnchorPane layoutX="429.0" layoutY="106.0" prefHeight="403.0" prefWidth="355.0" style="-fx-background-color: #9C2B27;">
+      <AnchorPane layoutX="429.0" layoutY="106.0" prefHeight="403.0" prefWidth="355.0" styleClass="login-background">
          <children>
             <JFXTextField fx:id="username" focusColor="#6cd044" layoutX="39.0" layoutY="139.0" prefHeight="25.0" prefWidth="240.0" promptText="Usuario/email" unFocusColor="#e4dcdc" />
             <JFXPasswordField fx:id="password" focusColor="#6cd044" layoutX="39.0" layoutY="223.0" prefHeight="25.0" prefWidth="240.0" promptText="Contraseña" unFocusColor="#d7cccc" />
-            <JFXButton fx:id="detallesLibroButton" layoutX="41.0" layoutY="377.0" onAction="#verDetallesLibro" text="Detalles libro" />
-            <JFXButton fx:id="signInButton" layoutX="46.0" layoutY="306.0" onAction="#signIn" prefHeight="25.0" prefWidth="240.0" style="-fx-background-color: #E45652;" text="Sign in" textFill="WHITE" />
+            <JFXButton fx:id="signInButton" layoutX="46.0" layoutY="306.0" onAction="#signIn" prefHeight="25.0" prefWidth="240.0" styleClass="primary-button" text="Sign in" textFill="WHITE" />
             <Label layoutX="84.0" layoutY="57.0" prefHeight="27.0" prefWidth="155.0" text="Pantalla de logueo" textFill="#dad5d5">
                <font>
                   <Font size="18.0" />
@@ -38,7 +36,7 @@
             <Font size="32.0" />
          </font>
       </Label>
-      <JFXButton layoutX="90.0" layoutY="346.0" prefHeight="25.0" prefWidth="164.0" style="-fx-background-color: #E45652;" text="Sign up" textFill="WHITE" />
+      <JFXButton layoutX="90.0" layoutY="346.0" prefHeight="25.0" prefWidth="164.0" styleClass="primary-button" text="Sign up" textFill="WHITE" />
       <Label layoutX="90.0" layoutY="283.0" prefHeight="34.0" prefWidth="261.0" text="Bienvenido a Java Library Management&#10;,su sistema organizador de biblotecas preferido&#10;&#10;" textFill="#cdc8c8" />
    </children>
 </AnchorPane>

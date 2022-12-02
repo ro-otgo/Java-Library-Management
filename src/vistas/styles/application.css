@@ -9,9 +9,17 @@
 }
 
 .primary-color, .primary-button{
-	-fx-background-color: #E45650;
+	-fx-background-color: #E45652;
 }
-singleton
+
+.background-window{
+	-fx-background-color: #20120F;
+}
+
+.login-background{
+	-fx-background-color:  #9C2B27;
+}
+
 .primary-button {
 	-fx-text-fill: #ffffff;
 }
@@ -27,3 +35,4 @@ singleton
 .detalle-contenido{
 	-fx-alignment: center;
 }
+
