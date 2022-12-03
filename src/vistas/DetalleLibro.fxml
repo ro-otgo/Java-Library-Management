@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane minHeight="500.0" minWidth="400.0" prefHeight="600.0" prefWidth="600.0" stylesheets="@styles/application.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane minHeight="600.0" minWidth="400.0" prefHeight="600.0" prefWidth="873.0" styleClass="background-window" stylesheets="@styles/application.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <GridPane styleClass="detalle-padding" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <columnConstraints>
@@ -20,7 +20,7 @@
             <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <GridPane styleClass="detalle-contenido">
+            <GridPane styleClass="background-window">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="111.0" minWidth="50.0" percentWidth="20.0" prefWidth="107.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="475.0" minWidth="10.0" percentWidth="80.0" prefWidth="473.0" />
@@ -32,26 +32,26 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" />
               </rowConstraints>
                <children>
-                  <Label maxWidth="1.7976931348623157E308" minWidth="-Infinity" text="ID:" />
-                  <Label maxWidth="1.7976931348623157E308" minHeight="-Infinity" text="Título:" GridPane.rowIndex="1" />
-                  <Label maxWidth="1.7976931348623157E308" minWidth="-Infinity" text="ISBN:" GridPane.rowIndex="2" />
-                  <Label maxWidth="1.7976931348623157E308" minWidth="-Infinity" text="Reservado:" GridPane.rowIndex="3" />
-                  <Label fx:id="idLabel" GridPane.columnIndex="1" GridPane.halignment="LEFT">
+                  <Label maxWidth="1.7976931348623157E308" minWidth="-Infinity" styleClass="texto-blanco" text="ID:" />
+                  <Label maxWidth="1.7976931348623157E308" minHeight="-Infinity" styleClass="texto-blanco" text="Título:" GridPane.rowIndex="1" />
+                  <Label maxWidth="1.7976931348623157E308" minWidth="-Infinity" styleClass="texto-blanco" text="ISBN:" GridPane.rowIndex="2" />
+                  <Label maxWidth="1.7976931348623157E308" minWidth="-Infinity" styleClass="texto-blanco" text="Reservado:" GridPane.rowIndex="3" />
+                  <Label fx:id="idLabel" styleClass="texto-blanco" GridPane.columnIndex="1" GridPane.halignment="LEFT">
                      <GridPane.margin>
                         <Insets left="8.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="tituloLabel" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Label fx:id="tituloLabel" styleClass="texto-blanco" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="8.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="ISBNLabel" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <Label fx:id="ISBNLabel" styleClass="texto-blanco" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="8.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="reservadoLabel" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <Label fx:id="reservadoLabel" styleClass="texto-blanco" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="8.0" right="15.0" />
                      </GridPane.margin>
@@ -64,7 +64,7 @@
                      <HBox.margin>
                         <Insets right="30.0" />
                      </HBox.margin></JFXButton>
-                  <JFXButton fx:id="volverButton" onAction="#volverAtras" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #ac2027;" styleClass="dark-button" text="Volver">
+                  <JFXButton fx:id="volverButton" onAction="#volverAtras" prefHeight="25.0" prefWidth="100.0" styleClass="dark-button" text="Volver">
                      <HBox.margin>
                         <Insets left="30.0" />
                      </HBox.margin></JFXButton>

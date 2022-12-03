@@ -29,10 +29,13 @@
 }
 
 .detalle-padding{
-	-fx-padding: 10px;
+	-fx-padding: 100px;
 }
 
 .detalle-contenido{
 	-fx-alignment: center;
 }
 
+.texto-blanco {
+	-fx-text-fill: #ffffff;
+}
