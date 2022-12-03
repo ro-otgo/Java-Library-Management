@@ -26,7 +26,24 @@ import javafx.stage.Window;
 import modelos.Libro;
 import repositorios.LibreriaSingleton;
 
-public class MainController {
+public class LoginController {
+	
+	public static void mostrarLogin(Stage primaryStage, Map<String,String> usuarios) throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(LoginController.class.getResource("/vistas/LoginView.fxml"));
+		LoginController mainController = new LoginController();
+		fxmlLoader.setController(mainController);
+		mainController.setUsuarios(usuarios);
+
+		Parent root = fxmlLoader.load();
+		
+		Scene scene = new Scene(root,873,600);
+		scene.getStylesheets().add(LoginController.class.getResource("/vistas/styles/application.css").toExternalForm());
+
+		primaryStage.setTitle("Java Library Management");
+		primaryStage.setScene(scene);
+		primaryStage.getIcons().add(new Image("/img/logo.jpg"));
+		primaryStage.show();
+	}
 
 	@FXML
 	private JFXTextField username;
