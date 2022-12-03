@@ -3,7 +3,7 @@ package application;
 import java.util.HashMap;
 import java.util.Map;
 
-import controladores.MainController;
+import controladores.LoginController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -17,26 +17,13 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vistas/login.fxml"));
-			MainController mainController = new MainController();
-			fxmlLoader.setController(mainController);
-			mainController.setUsuarios(loadUsers());
-
-			Parent root = fxmlLoader.load();
-			
-			Scene scene = new Scene(root,873,600);
-			scene.getStylesheets().add(getClass().getResource("/vistas/styles/application.css").toExternalForm());
-
-			primaryStage.setTitle("Java Library Management");
-			primaryStage.setScene(scene);
-			primaryStage.getIcons().add(new Image("/img/logo.jpg"));
-			primaryStage.show();
+			LoginController.mostrarLogin(primaryStage, loadUsers());
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	private static Map<String, String> loadUsers() {
+	public static Map<String, String> loadUsers() {
 		Map<String, String> usuarios = new HashMap<String,String>();
 		usuarios.put("Angel","123");
 		usuarios.put("Javier","123");

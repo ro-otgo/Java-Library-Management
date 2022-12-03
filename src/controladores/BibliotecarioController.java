@@ -5,6 +5,8 @@ package controladores;
 
 import com.jfoenix.controls.JFXButton;
 
+import application.Main;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -77,10 +79,13 @@ public class BibliotecarioController {
 
     // Falta añadir que cierre todas las ventanas abiertas (detalle libros, añadir libro, etc) no solo PantallaBibliotecario
     @FXML
-    void cerrarSesion(ActionEvent event) {
+    void cerrarSesion(ActionEvent event) throws IOException {
     	System.out.println("Se ha pulsado Sign out");
     	Node source = (Node) event.getSource();
     	Stage stage = (Stage) source.getScene().getWindow();
+    	
+    	Stage loginStage = new Stage();
+    	LoginController.mostrarLogin(loginStage, Main.loadUsers());
     	stage.close();
     }
     
