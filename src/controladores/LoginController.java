@@ -67,10 +67,7 @@ public class LoginController {
 	
 	private Map<String,String> usuarios;
 
-	/*
-	 * @author Javier
-	 * C�digo de prueba para que entre directamente en la vista del bibiliotecario
-	 * */
+
     @FXML
     void signIn(ActionEvent event) throws IOException {
 		Node source = (Node) event.getSource();
