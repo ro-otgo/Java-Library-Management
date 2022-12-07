@@ -28,14 +28,16 @@
               <rowConstraints>
                   <RowConstraints minHeight="10.0" prefHeight="30.0" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" />
               </rowConstraints>
                <children>
                   <Label maxWidth="1.7976931348623157E308" minWidth="-Infinity" styleClass="texto-blanco" text="ID:" />
                   <Label maxWidth="1.7976931348623157E308" minHeight="-Infinity" styleClass="texto-blanco" text="Título:" GridPane.rowIndex="1" />
-                  <Label maxWidth="1.7976931348623157E308" minWidth="-Infinity" styleClass="texto-blanco" text="ISBN:" GridPane.rowIndex="2" />
-                  <Label maxWidth="1.7976931348623157E308" minWidth="-Infinity" styleClass="texto-blanco" text="Reservado:" GridPane.rowIndex="3" />
+                  <Label maxWidth="1.7976931348623157E308" minHeight="-Infinity" styleClass="texto-blanco" text="Autor:" GridPane.rowIndex="2" />
+                  <Label maxWidth="1.7976931348623157E308" minWidth="-Infinity" styleClass="texto-blanco" text="ISBN:" GridPane.rowIndex="3" />
+                  <Label maxWidth="1.7976931348623157E308" minWidth="-Infinity" styleClass="texto-blanco" text="Reservado:" GridPane.rowIndex="4" />
                   <Label fx:id="idLabel" styleClass="texto-blanco" GridPane.columnIndex="1" GridPane.halignment="LEFT">
                      <GridPane.margin>
                         <Insets left="8.0" />
@@ -46,12 +48,16 @@
                         <Insets left="8.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="ISBNLabel" styleClass="texto-blanco" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <Label fx:id="autorLabel" styleClass="texto-blanco" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets left="8.0" />
+                     </GridPane.margin></Label>
+                  <Label fx:id="ISBNLabel" styleClass="texto-blanco" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="8.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="reservadoLabel" styleClass="texto-blanco" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <Label fx:id="reservadoLabel" styleClass="texto-blanco" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="8.0" right="15.0" />
                      </GridPane.margin>

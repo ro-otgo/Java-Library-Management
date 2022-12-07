@@ -36,7 +36,7 @@ public class LibroListaCell extends ListCell<Libro>{
 	private void updateContent() {
 		System.out.println(libro);
 		titulo.setText(libro.getTitulo());
-		autor.setText(libro.getIsbn());
+		autor.setText(libro.getAutor());
 		setText(null);
 		setGraphic(cellId);
 	}

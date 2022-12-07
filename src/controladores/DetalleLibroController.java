@@ -76,6 +76,9 @@ public class DetalleLibroController {
 
     @FXML // fx:id="tituloLabel"
     private Label tituloLabel; // Value injected by FXMLLoader
+    
+    @FXML // fx:id="autorLabel"
+    private Label autorLabel; // Value injected by FXMLLoader
 
     @FXML // fx:id="ISBNLabel"
     private Label ISBNLabel; // Value injected by FXMLLoader
@@ -122,6 +125,7 @@ public class DetalleLibroController {
     void initialize() {
         assert idLabel != null : "fx:id=\"idLabel\" was not injected: check your FXML file 'DetalleLibro.fxml'.";
         assert tituloLabel != null : "fx:id=\"tituloLabel\" was not injected: check your FXML file 'DetalleLibro.fxml'.";
+        assert autorLabel != null : "fx:id=\"autorLabel\" was not injected: check your FXML file 'DetalleLibro.fxml'.";
         assert ISBNLabel != null : "fx:id=\"ISBNLabel\" was not injected: check your FXML file 'DetalleLibro.fxml'.";
         assert reservadoLabel != null : "fx:id=\"reservadoLabel\" was not injected: check your FXML file 'DetalleLibro.fxml'.";
         assert reservarButton != null : "fx:id=\"reservarButton\" was not injected: check your FXML file 'DetalleLibro.fxml'.";
@@ -137,6 +141,7 @@ public class DetalleLibroController {
 		if (libro!=null) {
     		idLabel.setText(String.valueOf(libro.getId()));
     		tituloLabel.setText(libro.getTitulo());
+    		autorLabel.setText(libro.getAutor());
     		ISBNLabel.setText(libro.getIsbn());
     		if (libro.isReservado()) {
         		reservadoLabel.setText(TEXT_RESERVADO);

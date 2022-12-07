@@ -3,9 +3,16 @@
  */
 package controladores;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import com.jfoenix.controls.JFXListView;
 
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Reader;
+import java.lang.reflect.Type;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -31,6 +38,7 @@ import javafx.util.Callback;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import modelos.Libro;
 import repositorios.LibreriaSingleton;
@@ -45,7 +53,7 @@ public class LibrosListController {
 	public static void mostarLibrosList(Scene scene)  throws IOException{
 		// Mostrar vista lista libro
 		FXMLLoader loaderListaLibros = new FXMLLoader(LibrosListController.class.getResource("/vistas/LibrosList.fxml"));
-		LibrosListController listaLibroController = new LibrosListController(LibreriaSingleton.getLibreria().getLibros());
+		LibrosListController listaLibroController = new LibrosListController(getLibros());
 		loaderListaLibros.setController(listaLibroController);
 		Parent root = loaderListaLibros.load();
 		Stage stage = new Stage();
@@ -127,4 +135,34 @@ public class LibrosListController {
         listaView.setPlaceholder(placeHolder);
 
     }
+    
+    
+		// Devuelve un lista con los libros que hay en el JSON	
+		public static List<Libro> getLibros () {
+			List<Libro> libros = new ArrayList(); //objeto vacio donde guardar la información
+			try(Reader reader = new FileReader("listaLibros.json")){
+				Gson gson = new Gson();
+				Type tipoListaUsuarios = new TypeToken<List<Libro>>() {}.getType();
+				libros = gson.fromJson(reader, tipoListaUsuarios);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return libros;
+		}
+
+		// anade un libro al archivo JSON	
+		public static  void anadirLibro (Libro nuevoLibro) {
+			// guardamos en la variable libros la información del json
+			List<Libro> libros = new ArrayList();
+			libros = getLibros();
+			// añadimos a la lista el nuevo libro
+			libros.add(nuevoLibro);
+			// guardamos en el Json la lista actualizada
+			Gson gson = new GsonBuilder().setPrettyPrinting().create(); 
+			try(FileWriter writer = new FileWriter("listaLibros.json")){
+				gson.toJson(libros, writer);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 }

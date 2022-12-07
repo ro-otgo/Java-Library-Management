@@ -5,6 +5,7 @@ public class Libro {
 	private static long generatedtId = 1;
 
 	private String titulo;
+	private String autor;
 	private boolean reservado;
 	private String isbn;
 	private final long id;
@@ -38,7 +39,14 @@ public class Libro {
 	public void setNombre(String titulo) {
 		this.titulo = titulo;
 	}
+	
+	public String getAutor() {
+		return autor;
+	}
 
+	public void setAutor(String autor) {
+		this.autor = autor;
+	}
 	public boolean isReservado() {
 		return reservado;
 	}
