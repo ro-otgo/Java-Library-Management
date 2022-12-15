@@ -5,8 +5,6 @@ package controladores;
 
 import com.jfoenix.controls.JFXButton;
 
-import application.Main;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,8 +17,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import repositorios.LibreriaSingleton;
+import repositorios.UsuariosSingleton;
 
 public class BibliotecarioController {
 	
@@ -69,7 +67,9 @@ public class BibliotecarioController {
     
     @FXML
     void anadirLibro(ActionEvent event) {
-
+    	Node source = (Node) event.getSource();
+    	Scene scene = (Scene) source.getScene();
+    	CrearLibroController.mostrarVistaCrearLibro(scene);
     }
 
     @FXML
@@ -85,7 +85,10 @@ public class BibliotecarioController {
     	Stage stage = (Stage) source.getScene().getWindow();
     	
     	Stage loginStage = new Stage();
-    	LoginController.mostrarLogin(loginStage, Main.loadUsers());
+    	UsuariosSingleton usuarioRepo = UsuariosSingleton.getRepoUsuarios();
+    	LoginController.mostrarLogin(loginStage, usuarioRepo.getUsuarios());
+    	// escribir datos
+    	escribirDatos();
     	stage.close();
     }
     
@@ -119,6 +122,11 @@ public class BibliotecarioController {
     private void mostrarVistaListaLibro(Scene scene) throws IOException{
     	LibrosListController.mostarLibrosList(scene);
 	}
+    
+    private void escribirDatos() {
+    	LibreriaSingleton.getLibreria().escribirLibros();
+    	UsuariosSingleton.getRepoUsuarios().escribirUsuarios();
+    }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
