@@ -39,3 +39,8 @@
 .texto-blanco {
 	-fx-text-fill: #ffffff;
 }
+
+.botton-reservar {
+	-jfx-toggle-color: #E45652;
+	-jfx-toggle-line-color: #ff887c;
+}
