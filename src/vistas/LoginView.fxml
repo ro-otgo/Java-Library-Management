@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -16,7 +17,10 @@
          <children>
             <JFXTextField fx:id="username" focusColor="#6cd044" layoutX="39.0" layoutY="139.0" prefHeight="25.0" prefWidth="240.0" promptText="Usuario/email" unFocusColor="#e4dcdc" />
             <JFXPasswordField fx:id="password" focusColor="#6cd044" layoutX="39.0" layoutY="223.0" prefHeight="25.0" prefWidth="240.0" promptText="Contraseña" unFocusColor="#d7cccc" />
-            <JFXButton fx:id="signInButton" layoutX="46.0" layoutY="306.0" onAction="#signIn" prefHeight="25.0" prefWidth="240.0" styleClass="primary-button" text="Sign in" textFill="WHITE" />
+            <JFXButton fx:id="signInButton" layoutX="46.0" layoutY="306.0" onAction="#signIn" prefHeight="25.0" prefWidth="240.0" styleClass="primary-button" text="Sign in" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXButton>
             <Label layoutX="84.0" layoutY="57.0" prefHeight="27.0" prefWidth="155.0" text="Pantalla de logueo" textFill="#dad5d5">
                <font>
                   <Font size="18.0" />
@@ -31,12 +35,15 @@
             <Image url="@../img/inaki-del-olmo-NIJuEQw0RKg-unsplash.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="90.0" layoutY="228.0" text="Bienvenido a JLM" textFill="#d7d2d2">
+      <Label layoutX="90.0" layoutY="224.0" text="Bienvenido a JLM" textFill="#d7d2d2">
          <font>
             <Font size="32.0" />
          </font>
       </Label>
-      <JFXButton layoutX="90.0" layoutY="346.0" prefHeight="25.0" prefWidth="164.0" styleClass="primary-button" text="Sign up" textFill="WHITE" />
-      <Label layoutX="90.0" layoutY="283.0" prefHeight="34.0" prefWidth="261.0" text="Bienvenido a Java Library Management&#10;,su sistema organizador de biblotecas preferido&#10;&#10;" textFill="#cdc8c8" />
+      <JFXButton fx:id="signUpButton" layoutX="132.0" layoutY="345.0" onAction="#signUp" prefHeight="25.0" prefWidth="164.0" styleClass="primary-button" text="Sign up" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXButton>
+      <Label alignment="TOP_CENTER" layoutX="50.0" layoutY="280.0" prefHeight="55.0" prefWidth="327.0" text="Bienvenido a Java Library Management, &#10;su sistema organizador de biblotecas preferido&#10;&#10;" textAlignment="CENTER" textFill="#cdc8c8" />
    </children>
 </AnchorPane>
