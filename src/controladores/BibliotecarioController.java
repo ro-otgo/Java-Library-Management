@@ -17,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import repositorios.BibliotecariosSingleton;
 import repositorios.LibreriaSingleton;
 import repositorios.UsuariosSingleton;
 
@@ -85,10 +86,9 @@ public class BibliotecarioController {
     	Stage stage = (Stage) source.getScene().getWindow();
     	
     	Stage loginStage = new Stage();
-    	UsuariosSingleton usuarioRepo = UsuariosSingleton.getRepoUsuarios();
-    	LoginController.mostrarLogin(loginStage, usuarioRepo.getUsuarios());
-    	// escribir datos
-    	escribirDatos();
+    	BibliotecariosSingleton bibliotecariosRepo = BibliotecariosSingleton.getRepoUsuarios();
+    	UsuariosSingleton usuariosRepo = UsuariosSingleton.getRepoUsuarios();
+    	LoginController.mostrarLogin(loginStage, bibliotecariosRepo.getUsuarios(), usuariosRepo.getUsuarios()); 
     	stage.close();
     }
     
@@ -123,9 +123,8 @@ public class BibliotecarioController {
     	LibrosListController.mostarLibrosList(scene);
 	}
     
-    private void escribirDatos() {
-    	LibreriaSingleton.getLibreria().escribirLibros();
-    	UsuariosSingleton.getRepoUsuarios().escribirUsuarios();
+    private void escribirDatos() {    
+    	BibliotecariosSingleton.getRepoUsuarios().escribirUsuarios();
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete

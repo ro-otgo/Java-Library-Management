@@ -75,10 +75,12 @@ public class LibreriaSingleton {
 	
 	public void addLibro(Libro libro) {
 		libros.add(libro);
+		escribirLibros();
 	}
 	
 	public void removeLibro(Libro libro) {
 		libros.remove(libro);
+		escribirLibros();
 	}
 	
 	public void escribirLibros() {
