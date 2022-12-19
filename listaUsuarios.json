@@ -1,0 +1,44 @@
+[
+  {
+    "nombre": "Nombre_0",
+    "apellidos": "Apellidos_0",
+    "psw": "pass0000",
+    "email": "Email_0",
+    "idUsuario": "Usuario_0"
+  },
+  {
+    "nombre": "Nombre_1",
+    "apellidos": "Apellidos_1",
+    "psw": "pass0001",
+    "email": "Email_1",
+    "idUsuario": "Usuario_1"
+  },
+  {
+    "nombre": "Nombre_2",
+    "apellidos": "Apellidos_2",
+    "psw": "pass0002",
+    "email": "Email_2",
+    "idUsuario": "Usuario_2"
+  },
+  {
+    "nombre": "Nombre_3",
+    "apellidos": "Apellidos_3",
+    "psw": "pass0003",
+    "email": "Email_3",
+    "idUsuario": "Usuario_3"
+  },
+  {
+    "nombre": "Nombre_4",
+    "apellidos": "Apellidos_4",
+    "psw": "pass0004",
+    "email": "Email_4",
+    "idUsuario": "Usuario_4"
+  },
+  {
+    "nombre": "Francisco",
+    "apellidos": "Redondo",
+    "psw": "fran1234",
+    "email": "prueba@asdf",
+    "idUsuario": "fran1234"
+  }
+]

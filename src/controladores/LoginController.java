@@ -11,6 +11,7 @@ import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -24,14 +25,16 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import modelos.Libro;
+import modelos.Usuario;
 import repositorios.LibreriaSingleton;
 
 public class LoginController {
 	
-	public static void mostrarLogin(Stage primaryStage, Map<String,String> usuarios) throws IOException {
+	public static void mostrarLogin(Stage primaryStage, Map<String,String> bibliotecarios, List<Usuario> usuarios) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(LoginController.class.getResource("/vistas/LoginView.fxml"));
 		LoginController mainController = new LoginController();
 		fxmlLoader.setController(mainController);
+		mainController.setBibliotecarios(bibliotecarios);
 		mainController.setUsuarios(usuarios);
 
 		Parent root = fxmlLoader.load();
@@ -65,8 +68,24 @@ public class LoginController {
 	@FXML
     private JFXButton signInButton;
 	
-	private Map<String,String> usuarios;
+    @FXML // fx:id="signUpButton"
+    private JFXButton signUpButton; // Value injected by FXMLLoader
+    
+	private Map<String,String> bibliotecarios;
+	
+	private List<Usuario> usuarios;
 
+
+    @FXML
+    void signUp(ActionEvent event) {
+		try {
+			Node source = (Node) event.getSource();
+	    	Scene scene = (Scene) source.getScene();
+	    	CrearUsuarioController.mostrarVistaCrearUsuario(scene, usuarios, bibliotecarios);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    }
 
     @FXML
     void signIn(ActionEvent event) throws IOException {
@@ -90,7 +109,7 @@ public class LoginController {
     }
     
     private boolean validarUsuario(String username, String password) {
-    	String usuarioPwd = usuarios.getOrDefault(username,null);
+    	String usuarioPwd = bibliotecarios.getOrDefault(username,null);
     	if (usuarioPwd!=null) {
     		return usuarioPwd.equals(password);
     	}
@@ -98,7 +117,6 @@ public class LoginController {
     }
     
 
-	
 	private void mostrarVistaPantallaBibliotecario(Stage stage, String nombreBibliotecario) throws IOException{
 		BibliotecarioController.mostrarVistaPantallaBibliotecario(nombreBibliotecario);
     	stage.close();
@@ -110,8 +128,12 @@ public class LoginController {
 				: "fx:id=\"detallesLibroButton\" was not injected: check your FXML file 'app.fxml'.";
 
 	}
-
-	public void setUsuarios(Map<String, String> loadUsers) {
+	
+	public void setBibliotecarios(Map<String, String> loadbibliotecarios) {
+		this.bibliotecarios = loadbibliotecarios;
+	}
+	
+	public void setUsuarios(List<Usuario> loadUsers) {
 		this.usuarios = loadUsers;
 	}
 }

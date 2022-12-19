@@ -5,29 +5,33 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
+import modelos.Usuario;
+
 public class UsuariosSingleton {
 	
 	private static UsuariosSingleton usuariosRepo;
 	
-	private  Map<String, String> usuarios;
+	private  List<Usuario> usuarios;
 	
 	private UsuariosSingleton() {
 		usuarios = loadUsers();
 	}
 	
-	// Devuelve el Mapa de bibliotecarios guardados en archivo JSON
-	private Map<String, String> loadUsers () {
-		Map<String, String> usuarios = new HashMap<String, String>(); //objeto vacio donde guardar la informacion
-		try(Reader reader = new FileReader("listaBibliotecarios.json")){
+	// Devuelve la lista de usuarios guardados en archivo JSON
+	private List<Usuario> loadUsers () {
+		List<Usuario> usuarios = new ArrayList<Usuario>(); //objeto vacio donde guardar la informacion
+		try(Reader reader = new FileReader("listaUsuarios.json")){
 			Gson gson = new Gson();
-			Type tipoListaUsuarios = new TypeToken<Map<String, String>>() {}.getType();
+			Type tipoListaUsuarios = new TypeToken<List<Usuario>>() {}.getType();
 			usuarios = gson.fromJson(reader, tipoListaUsuarios);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -37,9 +41,8 @@ public class UsuariosSingleton {
 	
 	// anade un nuevo usuario al listado guardado en archivo JSON
 	public void escribirUsuarios () {
-		// guardamos en la variable usuarios la informacion del json
 		Gson gson = new GsonBuilder().setPrettyPrinting().create(); 
-		try(FileWriter writer = new FileWriter("listaBibliotecarios.json")){
+		try(FileWriter writer = new FileWriter("listaUsuarios.json")){
 			gson.toJson(usuarios, writer);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -54,11 +57,12 @@ public class UsuariosSingleton {
 		return usuariosRepo;
 	}
 
-	public Map<String, String> getUsuarios() {
+	public List<Usuario> getUsuarios() {
 		return usuarios;
 	}
 	
-	public void addUsuario(Map<String, String> nuevoUsuario) {
-		usuarios.putAll(nuevoUsuario);
+	public void addUsuario(Usuario nuevoUsuario) {
+		usuarios.add(nuevoUsuario);
+		escribirUsuarios();
 	}
 }
