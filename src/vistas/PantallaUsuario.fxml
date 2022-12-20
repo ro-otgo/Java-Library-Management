@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" styleClass="background-window" stylesheets="@styles/application.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutX="439.0" layoutY="116.0" prefHeight="403.0" prefWidth="355.0" style="-fx-background-color: #9C2B27;">
+         <children>
+            <JFXButton fx:id="devolucionButton" layoutX="58.0" layoutY="220.0" onAction="#devolucionLibro" prefHeight="25.0" prefWidth="240.0" styleClass="primary-color" text="Devolución" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXButton>
+            <JFXButton fx:id="reservarButton" layoutX="58.0" layoutY="155.0" onAction="#reservarLibro" prefHeight="25.0" prefWidth="240.0" styleClass="primary-color" text="Realizar reserva" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXButton>
+            <JFXButton fx:id="detalleLibrosButton" layoutX="58.0" layoutY="90.0" onAction="#verDetallesLibro" prefHeight="25.0" prefWidth="240.0" styleClass="primary-color" text="Listado libros" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXButton>
+            <JFXButton fx:id="signOutButton" layoutX="58.0" layoutY="335.0" onAction="#cerrarSesion" prefHeight="25.0" prefWidth="240.0" styleClass="primary-color" text="Sign out" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXButton>
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="295.0" fitWidth="378.0" layoutX="34.0" layoutY="191.0" opacity="0.3" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/inaki-del-olmo-NIJuEQw0RKg-unsplash.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="100.0" layoutY="228.0" text="Bienvenido a JLM" textFill="#d7d2d2">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
+      <Label layoutX="76.0" layoutY="280.0" prefHeight="40.0" prefWidth="326.0" text="Bienvenido a Java Library Management&#10;,su sistema organizador de biblotecas preferido&#10;&#10;" textAlignment="CENTER" textFill="#cdc8c8" />
+      <Label fx:id="usuarioLabel" layoutX="34.0" layoutY="24.0" prefHeight="45.0" prefWidth="230.0" text="// Nombre del Usuario" textFill="#f5f5f5" />
+   </children>
+</AnchorPane>

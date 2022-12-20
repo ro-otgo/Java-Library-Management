@@ -92,23 +92,28 @@ public class LoginController {
 		Node source = (Node) event.getSource();
     	Stage stage = (Stage) source.getScene().getWindow();
     	
-        //Campo vacio
-    	if(username.getText().isEmpty() || password.getText().isEmpty()) {
+        //Campo vacio:
+    	if(username.getText().isEmpty() || password.getText().isEmpty()) 
             wrongLogIn.setText("Porfavor introduce tus datos.");
-        }else {
-        	boolean resultado = validarUsuario(username.getText(),password.getText());
-        	if(resultado) {
-                wrongLogIn.setText("Success!");
-                mostrarVistaPantallaBibliotecario(stage,username.getText().toString());
-        	}
-            //Contrasena o usuario incorrectos
-            else {
-                wrongLogIn.setText("Usuario o contrasena incorrectos!");
-            }	
-        }
+    	// Acceso como bibliotecario:
+    	else if(validarBibliotecario(username.getText(),password.getText())) {
+    		wrongLogIn.setText("Acceso bibliotecario!");
+            mostrarVistaPantallaBibliotecario(stage,username.getText().toString());
+    	}
+    	//Acceso como usuario:
+    	Usuario user = validarUsuario(username.getText(),password.getText());
+    	if(user != null) {
+    		wrongLogIn.setText("Acceso usuario!");
+    		mostrarVistaPantallaUsuario(stage, user);
+    	}
+    	// Datos incorrectos:
+    	else
+    		wrongLogIn.setText("Usuario o contrasena incorrectos!");
     }
-    
-    private boolean validarUsuario(String username, String password) {
+            
+          	
+    // Valida si id usuario y contraseña coinciden con un bibliotecario
+    private boolean validarBibliotecario(String username, String password) {
     	String usuarioPwd = bibliotecarios.getOrDefault(username,null);
     	if (usuarioPwd!=null) {
     		return usuarioPwd.equals(password);
@@ -116,9 +121,23 @@ public class LoginController {
     	return false;
     }
     
+    // Valida si id usuario y contraseña coinciden con un usuario
+    private Usuario validarUsuario(String username, String password) {
+    	for(Usuario usuario: usuarios) {
+    		if(usuario.getiIdUsuario().equals(username) && usuario.getPsw().equals(password))
+    			return usuario;
+    	}
+    	return null;
+    }
+    
 
 	private void mostrarVistaPantallaBibliotecario(Stage stage, String nombreBibliotecario) throws IOException{
 		BibliotecarioController.mostrarVistaPantallaBibliotecario(nombreBibliotecario);
+    	stage.close();
+	}
+	
+	private void mostrarVistaPantallaUsuario(Stage stage, Usuario usuario) throws IOException{
+		UsuarioController.mostrarVistaPantallaUsuario(usuario);
     	stage.close();
 	}
 	
