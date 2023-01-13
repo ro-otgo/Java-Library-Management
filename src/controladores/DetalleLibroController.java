@@ -22,6 +22,9 @@ import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import modelos.Libro;
+import modelos.Usuario;
+import repositorios.ReservaSingleton;
+import repositorios.SesionSingleton;
 
 /**
  * Detalles libros
@@ -101,6 +104,11 @@ public class DetalleLibroController {
     	libro.setReservado(!libro.isReservado());
     	if (libro.isReservado()) {
         	reservadoLabel.setText(TEXT_RESERVADO);
+        	Usuario usuario = SesionSingleton.getSesionSingleton().obtenerUsuarioActual();
+        	if (usuario != null) {
+            	ReservaSingleton.getReservaSingleton().crearReserva(libro, usuario);
+        	}
+        	System.out.println(usuario);
     	}else {
     		reservadoLabel.setText(TEXT_DISPONIBLE);
     	}

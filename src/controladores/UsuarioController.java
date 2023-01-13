@@ -19,6 +19,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import modelos.Usuario;
 import repositorios.BibliotecariosSingleton;
+import repositorios.SesionSingleton;
 import repositorios.UsuariosSingleton;
 
 public class UsuarioController{
@@ -72,6 +73,7 @@ public class UsuarioController{
     	BibliotecariosSingleton bibliotecariosRepo = BibliotecariosSingleton.getRepoUsuarios();
     	UsuariosSingleton usuariosRepo = UsuariosSingleton.getRepoUsuarios();
     	LoginController.mostrarLogin(loginStage, bibliotecariosRepo.getUsuarios(), usuariosRepo.getUsuarios()); 
+    	SesionSingleton.getSesionSingleton().actualizarUsuario(null);
     	stage.close();
     }
 

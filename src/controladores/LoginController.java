@@ -27,6 +27,7 @@ import javafx.stage.Window;
 import modelos.Libro;
 import modelos.Usuario;
 import repositorios.LibreriaSingleton;
+import repositorios.SesionSingleton;
 
 public class LoginController {
 	
@@ -104,15 +105,17 @@ public class LoginController {
     	Usuario user = validarUsuario(username.getText(),password.getText());
     	if(user != null) {
     		wrongLogIn.setText("Acceso usuario!");
+    		SesionSingleton.getSesionSingleton().actualizarUsuario(user);
     		mostrarVistaPantallaUsuario(stage, user);
     	}
-    	// Datos incorrectos:
-    	else
+    	else {
+        	// Datos incorrectos:
     		wrongLogIn.setText("Usuario o contrasena incorrectos!");
+    	}
     }
             
           	
-    // Valida si id usuario y contraseña coinciden con un bibliotecario
+    // Valida si id usuario y contrasena coinciden con un bibliotecario
     private boolean validarBibliotecario(String username, String password) {
     	String usuarioPwd = bibliotecarios.getOrDefault(username,null);
     	if (usuarioPwd!=null) {
@@ -121,7 +124,7 @@ public class LoginController {
     	return false;
     }
     
-    // Valida si id usuario y contraseña coinciden con un usuario
+    // Valida si id usuario y contrasena coinciden con un usuario
     private Usuario validarUsuario(String username, String password) {
     	for(Usuario usuario: usuarios) {
     		if(usuario.getiIdUsuario().equals(username) && usuario.getPsw().equals(password))
