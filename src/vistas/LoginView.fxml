@@ -15,8 +15,8 @@
    <children>
       <AnchorPane layoutX="429.0" layoutY="106.0" prefHeight="403.0" prefWidth="355.0" styleClass="login-background">
          <children>
-            <JFXTextField fx:id="username" focusColor="#6cd044" layoutX="39.0" layoutY="139.0" prefHeight="25.0" prefWidth="240.0" promptText="Usuario/email" unFocusColor="#e4dcdc" />
-            <JFXPasswordField fx:id="password" focusColor="#6cd044" layoutX="39.0" layoutY="223.0" prefHeight="25.0" prefWidth="240.0" promptText="Contraseña" unFocusColor="#d7cccc" />
+            <JFXTextField fx:id="username" focusColor="#6cd044" layoutX="39.0" layoutY="139.0" prefHeight="25.0" prefWidth="240.0" promptText="Usuario/email" styleClass="texto-blanco" unFocusColor="#e4dcdc" />
+            <JFXPasswordField fx:id="password" focusColor="#6cd044" layoutX="39.0" layoutY="223.0" prefHeight="25.0" prefWidth="240.0" promptText="Contraseña" styleClass="texto-blanco" unFocusColor="#d7cccc" />
             <JFXButton fx:id="signInButton" layoutX="46.0" layoutY="306.0" onAction="#signIn" prefHeight="25.0" prefWidth="240.0" styleClass="primary-button" text="Sign in" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
