@@ -84,6 +84,7 @@ public class ReservaSingleton {
 		Reserva reserva = new Reserva(usuario.getiIdUsuario(), libro.getId(),appConfiguracion.getTiempoReserva());
 		reservas.add(reserva);
 		escribirReservas();
+		libro.setReservado(true);
 	}
 
 	public void eliminarReserva(Long idReserva) {
@@ -122,6 +123,14 @@ public class ReservaSingleton {
 	
 	public List<Reserva> buscarReservaPorUsuario(Usuario usuario) {
 		return reservas.stream().filter(r -> usuario.getiIdUsuario().equals(r.getIdUsuario())).collect(Collectors.toList());
+	}
+	
+	public List<Reserva> buscarReservaActivaPorUsuarioLibro(Usuario usuario, Libro libro) {
+		return reservas.stream().filter(r -> usuario.getiIdUsuario().equals(r.getIdUsuario()) && r.isActive() && libro.getId() == r.getIdLibro()).collect(Collectors.toList());
+	}
+	
+	public boolean libroReservado(Libro libro) {
+		return reservas.stream().anyMatch(r->libro.getId()==r.getIdLibro() && r.isActive());
 	}
 
 	public void escribirReservas() {

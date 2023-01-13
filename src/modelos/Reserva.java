@@ -22,11 +22,12 @@ public class Reserva {
 	}
 
 	public Reserva(String idUsuario, Long idLibro, int tiempoReserva) {
-		this.id = generatedID ++;
+		this.id = ++generatedID;
 		this.idUsuario = idUsuario;
 		this.idLibro = idLibro;
 		this.fechaInicioReserva = LocalDate.now();
 		this.fechaFinReserva = this.fechaInicioReserva.plusDays(tiempoReserva);
+		this.isActive = true;
 	}
 	
 	public Long getId() {
@@ -75,6 +76,15 @@ public class Reserva {
 
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
+	}
+	
+
+	public static Long getGeneratedID() {
+		return generatedID;
+	}
+
+	public static void setGeneratedID(Long generatedID) {
+		Reserva.generatedID = generatedID;
 	}
 
 	@Override

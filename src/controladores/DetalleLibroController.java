@@ -9,6 +9,7 @@ import com.jfoenix.controls.JFXButton;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,6 +23,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import modelos.Libro;
+import modelos.Reserva;
 import modelos.Usuario;
 import repositorios.ReservaSingleton;
 import repositorios.SesionSingleton;
@@ -101,16 +103,24 @@ public class DetalleLibroController {
      */
     @FXML
     void reservarLibro(ActionEvent event) {
-    	libro.setReservado(!libro.isReservado());
-    	if (libro.isReservado()) {
-        	reservadoLabel.setText(TEXT_RESERVADO);
-        	Usuario usuario = SesionSingleton.getSesionSingleton().obtenerUsuarioActual();
+    	Usuario usuario = SesionSingleton.getSesionSingleton().obtenerUsuarioActual();
+    	boolean reservado = libro.isReservado();
+    	if (!reservado) {
         	if (usuario != null) {
             	ReservaSingleton.getReservaSingleton().crearReserva(libro, usuario);
         	}
-        	System.out.println(usuario);
+        	reservadoLabel.setText(TEXT_RESERVADO);
     	}else {
-    		reservadoLabel.setText(TEXT_DISPONIBLE);
+    		System.out.println("Comprobando reservas");
+    		List<Reserva> reservas = ReservaSingleton.getReservaSingleton().buscarReservaActivaPorUsuarioLibro(usuario,libro);
+    		if (!reservas.isEmpty()) {
+    			Reserva reserva = reservas.get(0);
+    			reserva.setActive(false);
+        		reservadoLabel.setText(TEXT_DISPONIBLE);
+    		}
+    		else {
+        		System.out.println("El libro esta reservado.");
+    		}
     	}
     	System.out.println("Se ha pulsado reservar libro");
     }

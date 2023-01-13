@@ -85,12 +85,13 @@ public class CrearLibroController {
 
     @FXML
     void crearLibro(ActionEvent event) {
-    	Libro libro = new Libro();
-    	libro.setIsbn(isbnInput.getText());
-    	libro.setNombre(tituloInput.getText());
-    	libro.setAutor(autorInput.getText());
-    	libro.setReservado(reservadoInput.isSelected());
-    	LibreriaSingleton.getLibreria().addLibro(libro);
+    	LibreriaSingleton libreria = LibreriaSingleton.getLibreria();
+    	Libro.LibroBuilder builder = new Libro.LibroBuilder();
+    	builder.setAutor(autorInput.getText());
+    	builder.setTitulo(tituloInput.getText());
+    	builder.setIsbn(isbnInput.getText());
+    	Libro libro = builder.build();
+    	libreria.addLibro(libro);
     	stage.close();
     }
 

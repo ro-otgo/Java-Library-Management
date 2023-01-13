@@ -26,7 +26,6 @@ public class UsuarioController{
 	
 	private static String NOMBRE_VISTA = "Pantalla usuario";
 	
-//pasar libros???? creo que no
 	public static void mostrarVistaPantallaUsuario(Usuario usuario) throws IOException{
 		FXMLLoader loader = new FXMLLoader(UsuarioController.class.getResource("/vistas/PantallaUsuario.fxml"));
 		UsuarioController pantallaUsuarioController = new UsuarioController();
