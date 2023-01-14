@@ -7,6 +7,8 @@ import java.io.Reader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -80,6 +82,10 @@ public class LibreriaSingleton {
 	public void removeLibro(Libro libro) {
 		libros.remove(libro);
 		escribirLibros();
+	}
+	
+	public Optional<Libro> buscarLibroPorId(long idLibro) {
+		return libros.stream().filter(l->l.getId()==idLibro).findFirst();
 	}
 	
 	public void escribirLibros() {

@@ -10,32 +10,33 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="900.0" styleClass="background-window" stylesheets="@styles/application.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane layoutX="439.0" layoutY="116.0" prefHeight="403.0" prefWidth="355.0" style="-fx-background-color: #9C2B27;">
+      <AnchorPane layoutX="437.0" layoutY="182.0" prefHeight="270.0" prefWidth="355.0" style="-fx-background-color: #9C2B27;">
          <children>
-            <JFXButton fx:id="anadirButton" layoutX="58.0" layoutY="220.0" onAction="#anadirLibro" prefHeight="25.0" prefWidth="240.0" styleClass="primary-color" text="Añadir libro" textFill="WHITE">
+            <JFXButton fx:id="anadirButton" layoutX="58.0" layoutY="125.0" onAction="#anadirLibro" prefHeight="25.0" prefWidth="240.0" styleClass="primary-color" text="Añadir libro" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
-               </cursor></JFXButton>
-            <JFXButton fx:id="devolucionButton" layoutX="58.0" layoutY="155.0" onAction="#devolucionLibro" prefHeight="25.0" prefWidth="240.0" styleClass="primary-color" text="Devolución" textFill="WHITE">
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="verReservaButton" layoutX="58.0" layoutY="75.0" onAction="#verReservas" prefHeight="25.0" prefWidth="240.0" styleClass="primary-color" text="Ver reservas" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
-               </cursor></JFXButton>
-            <JFXButton fx:id="reservaButton" layoutX="58.0" layoutY="90.0" onAction="#reservarLibro" prefHeight="25.0" prefWidth="240.0" styleClass="primary-color" text="Realizar reserva" textFill="WHITE">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></JFXButton>
+               </cursor>
+            </JFXButton>
             <JFXButton fx:id="detalleLibrosButton" layoutX="58.0" layoutY="25.0" onAction="#verDetallesLibro" prefHeight="25.0" prefWidth="240.0" styleClass="primary-color" text="Listado libros" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
-               </cursor></JFXButton>
-            <JFXButton fx:id="borrarButton" layoutX="58.0" layoutY="285.0" onAction="#borrarLibro" prefHeight="25.0" prefWidth="240.0" styleClass="primary-color" text="Borrar libro" textFill="WHITE">
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="devolverButton" layoutX="58.0" layoutY="175.0" onAction="#devolverButton" prefHeight="25.0" prefWidth="240.0" styleClass="primary-color" text="Devolver libro" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
-               </cursor></JFXButton>
-            <JFXButton fx:id="modificarButton" layoutX="58.0" layoutY="350.0" onAction="#modificarLibro" prefHeight="25.0" prefWidth="240.0" styleClass="primary-color" text="Modificar libro" textFill="WHITE">
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="modificarButton" layoutX="58.0" layoutY="225.0" onAction="#modificarLibro" prefHeight="25.0" prefWidth="240.0" styleClass="primary-color" text="Modificar libro" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
-               </cursor></JFXButton>
+               </cursor>
+            </JFXButton>
          </children>
       </AnchorPane>
       <ImageView fitHeight="295.0" fitWidth="378.0" layoutX="34.0" layoutY="191.0" opacity="0.3" pickOnBounds="true" preserveRatio="true">

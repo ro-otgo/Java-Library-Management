@@ -109,6 +109,10 @@ public class ReservaSingleton {
 		return false;
 	}
 	
+	public List<Reserva> getReservasActivas(){
+		return reservas.stream().filter(Reserva::isActive).collect(Collectors.toList());
+	}
+	
 	public List<Reserva> buscarReservaActivaPorLibro(Libro libro) {
 		return reservas.stream().filter(r -> libro.getId() == r.getIdLibro() && r.isActive()).collect(Collectors.toList());
 	}

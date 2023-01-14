@@ -39,7 +39,7 @@ public class DetalleLibroController {
 	 * Mostrar vista detalles del libro seleccionado
 	 * @throws IOException
 	 */
-	public static void mostrarVistaDetallesLibro(Libro libro, Control control) throws IOException {
+	public static void mostrarVistaDetallesLibro(Libro libro, Scene scene) throws IOException {
 		// Mostrar vista ver detalles libro
 		FXMLLoader loaderDetallesLibro = new FXMLLoader(DetalleLibroController.class.getResource("/vistas/DetalleLibro.fxml"));
 		DetalleLibroController detallesLibroController = new DetalleLibroController();
@@ -49,7 +49,7 @@ public class DetalleLibroController {
 		Stage stage = new Stage();
 		stage.setScene(new Scene(root));
 		stage.initModality(Modality.WINDOW_MODAL);
-		stage.initOwner(control.getScene().getWindow());
+		stage.initOwner(scene.getWindow());
 		stage.setTitle(DetalleLibroController.NOMBRE_VENTANA);
 		stage.setMinHeight(DetalleLibroController.MIN_HEIGHT);
 		stage.setMinWidth(DetalleLibroController.MIN_WIDTH);

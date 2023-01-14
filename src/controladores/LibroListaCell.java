@@ -117,7 +117,7 @@ public class LibroListaCell extends ListCell<Libro>{
 	 * @throws IOException
 	 */
 	private void mostrarVistaDetallesLibro() throws IOException {
-		DetalleLibroController.mostrarVistaDetallesLibro(libro, this);
+		DetalleLibroController.mostrarVistaDetallesLibro(libro, getScene());
 	}
 
 

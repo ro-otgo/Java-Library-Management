@@ -46,7 +46,7 @@
                   <TextField fx:id="tituloInput" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TextField fx:id="isbnInput" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <TextField fx:id="autorInput" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <JFXToggleButton fx:id="reservadoInput" prefHeight="0.0" prefWidth="143.0" styleClass="botton-reservar" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <JFXToggleButton fx:id="reservadoInput" prefHeight="0.0" prefWidth="143.0" styleClass="button-reservar" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                </children>
             </GridPane>
             <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">

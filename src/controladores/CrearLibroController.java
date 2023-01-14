@@ -43,6 +43,7 @@ public class CrearLibroController {
 			stage.setTitle(NOMBRE_VISTA);
 			controller.stage = stage;
 			controller.idInput.setDisable(true);
+			controller.reservadoInput.setDisable(true);
 			stage.show();
 
 		} catch (IOException e) {
