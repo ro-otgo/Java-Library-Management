@@ -99,10 +99,16 @@ public class BibliotecarioController {
 
 	@FXML
 	void modificarLibro(ActionEvent event) {
-		// TODO
-		// TODO: Al pulsar este boton se mostrar un menu con los libros y cuando el
-		// bibliotecario escoja uno se modificara el libro
 		System.out.println("Se ha pulsado ver modificarLibro");
+		try {
+			Node source = (Node) event.getSource();
+			Scene scene = (Scene) source.getScene();
+			mostrarVistaListaLibro(scene);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
 	}
 
 	@FXML

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -56,6 +57,11 @@ public class UsuariosSingleton {
 		}
 		return usuariosRepo;
 	}
+	
+	public Optional<Usuario> findUsuarioById(String usuarioId){
+		return usuarios.stream().filter(u->u.getiIdUsuario().equals(usuarioId)).findFirst();
+	}
+	
 
 	public List<Usuario> getUsuarios() {
 		return usuarios;

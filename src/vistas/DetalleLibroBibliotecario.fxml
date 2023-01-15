@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<TabPane fx:id="tabPane" minHeight="600.0" minWidth="400.0" prefHeight="600.0" prefWidth="873.0" styleClass="background-window" stylesheets="@styles/application.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+	<tabs>
+		<Tab text="Vista Usuario">
+			<content>
+				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+					<children>
+						<GridPane styleClass="detalle-padding" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+							<columnConstraints>
+								<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+							</columnConstraints>
+							<rowConstraints>
+								<RowConstraints />
+								<RowConstraints minHeight="10.0" percentHeight="90.0" vgrow="SOMETIMES" />
+								<RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+							</rowConstraints>
+							<children>
+								<GridPane styleClass="background-window" GridPane.rowIndex="1">
+									<columnConstraints>
+										<ColumnConstraints hgrow="SOMETIMES" maxWidth="111.0" minWidth="50.0" percentWidth="22.0" prefWidth="107.0" />
+										<ColumnConstraints hgrow="SOMETIMES" maxWidth="475.0" minWidth="10.0" percentWidth="78.0" prefWidth="473.0" />
+									</columnConstraints>
+									<rowConstraints>
+										<RowConstraints minHeight="10.0" prefHeight="30.0" />
+										<RowConstraints minHeight="10.0" prefHeight="30.0" />
+										<RowConstraints minHeight="10.0" prefHeight="30.0" />
+										<RowConstraints minHeight="10.0" prefHeight="30.0" />
+										<RowConstraints minHeight="10.0" prefHeight="30.0" />
+									</rowConstraints>
+									<children>
+										<Label maxWidth="1.7976931348623157E308" minWidth="-Infinity" styleClass="label-style" text="ID:" />
+										<Label maxWidth="1.7976931348623157E308" minHeight="-Infinity" styleClass="label-style" text="Título:" GridPane.rowIndex="1" />
+										<Label maxWidth="1.7976931348623157E308" minHeight="-Infinity" styleClass="label-style" text="Autor:" GridPane.rowIndex="2" />
+										<Label maxWidth="1.7976931348623157E308" minWidth="-Infinity" styleClass="label-style" text="ISBN:" GridPane.rowIndex="3" />
+										<Label maxWidth="1.7976931348623157E308" minWidth="-Infinity" styleClass="label-style" text="Usuario Reserva:" GridPane.rowIndex="4" />
+										<Label fx:id="idLabel" styleClass="label-style" GridPane.columnIndex="1" GridPane.halignment="LEFT">
+											<GridPane.margin>
+												<Insets left="8.0" />
+											</GridPane.margin>
+										</Label>
+										<Label fx:id="tituloLabel" styleClass="label-style" GridPane.columnIndex="1" GridPane.rowIndex="1">
+											<GridPane.margin>
+												<Insets left="8.0" />
+											</GridPane.margin>
+										</Label>
+										<Label fx:id="autorLabel" styleClass="label-style" GridPane.columnIndex="1" GridPane.rowIndex="2">
+											<GridPane.margin>
+												<Insets left="8.0" />
+											</GridPane.margin>
+										</Label>
+										<Label fx:id="ISBNLabel" styleClass="label-style" GridPane.columnIndex="1" GridPane.rowIndex="3">
+											<GridPane.margin>
+												<Insets left="8.0" />
+											</GridPane.margin>
+										</Label>
+										<Label fx:id="reservadoLabel" styleClass="label-style" GridPane.columnIndex="1" GridPane.rowIndex="4">
+											<GridPane.margin>
+												<Insets left="8.0" right="15.0" />
+											</GridPane.margin>
+										</Label>
+									</children>
+								</GridPane>
+								<HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+									<children>
+										<JFXButton fx:id="volverButton" onAction="#volverAtras" prefHeight="25.0" prefWidth="100.0" styleClass="button-volver" text="Volver">
+											<HBox.margin>
+												<Insets right="30.0" />
+											</HBox.margin>
+										</JFXButton>
+										<JFXButton fx:id="reservarButton" onAction="#reservarLibro" prefHeight="25.0" prefWidth="100.0" styleClass="primary-button" text="Reservar">
+											<HBox.margin>
+												<Insets left="30.0" />
+											</HBox.margin>
+										</JFXButton>
+									</children>
+								</HBox>
+							</children>
+						</GridPane>
+					</children>
+				</AnchorPane>
+			</content>
+		</Tab>
+		<Tab text="Vista Bibliotecario">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <GridPane styleClass="detalle-padding" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints minHeight="10.0" percentHeight="90.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <GridPane styleClass="background-window" GridPane.rowIndex="1">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="111.0" minWidth="50.0" percentWidth="20.0" prefWidth="107.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="475.0" minWidth="10.0" percentWidth="80.0" prefWidth="473.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                           </rowConstraints>
+                           <children>
+                              <Label maxWidth="1.7976931348623157E308" minWidth="-Infinity" styleClass="label-style" text="ID:" />
+                              <Label maxWidth="1.7976931348623157E308" minHeight="-Infinity" styleClass="label-style" text="Título:" GridPane.rowIndex="1" />
+                              <Label maxWidth="1.7976931348623157E308" minHeight="-Infinity" styleClass="label-style" text="Autor:" GridPane.rowIndex="2" />
+                              <Label maxWidth="1.7976931348623157E308" minWidth="-Infinity" styleClass="label-style" text="ISBN:" GridPane.rowIndex="3" />
+                              <Label maxWidth="1.7976931348623157E308" minWidth="-Infinity" styleClass="label-style" text="ID reserva:" GridPane.rowIndex="4" />
+                              <Label fx:id="idLabel1" styleClass="label-style" GridPane.columnIndex="1" GridPane.halignment="LEFT">
+                                 <GridPane.margin>
+                                    <Insets left="8.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <JFXTextField fx:id="tituloLabel1" styleClass="text-field-reserva" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <JFXTextField fx:id="autorLabel1" styleClass="text-field-reserva" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <JFXTextField fx:id="ISBNLabel1" styleClass="text-field-reserva" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Label fx:id="reservadoLabel1" styleClass="label-style" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                 <GridPane.margin>
+                                    <Insets left="8.0" right="15.0" />
+                                 </GridPane.margin>
+                              </Label>
+                           </children>
+                        </GridPane>
+                        <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                           <children>
+                              <JFXButton onAction="#volverAtras" prefHeight="25.0" prefWidth="100.0" styleClass="button-volver" text="Volver" textFill="WHITE">
+                                 <HBox.margin>
+                                    <Insets right="30.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                              <JFXButton fx:id="modificarButton" onAction="#modificar" prefHeight="25.0" prefWidth="100.0" styleClass="primary-button" text="Modificar">
+                                 <HBox.margin>
+                                    <Insets left="30.0" right="30.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                              <JFXButton fx:id="borrarButton1" onAction="#borrarButton" prefHeight="25.0" prefWidth="100.0" styleClass="button-borrar" text="Borrar">
+                                 <HBox.margin>
+                                    <Insets left="30.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                           </children>
+                        </HBox>
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+         </content>
+		</Tab>
+	</tabs>
+</TabPane>

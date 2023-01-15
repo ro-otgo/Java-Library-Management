@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import org.controlsfx.control.Notifications;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -19,15 +21,20 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Control;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import modelos.Libro;
 import modelos.Reserva;
+import modelos.Usuario;
 import repositorios.LibreriaSingleton;
 import repositorios.ReservaSingleton;
+import repositorios.SesionSingleton;
+import repositorios.UsuariosSingleton;
 
 /**
  * Sample Skeleton for 'DetalleReserva.fxml' Controller Class
@@ -57,6 +64,17 @@ public class ReservaDetalleController {
 			stage.setMinWidth(MIN_WIDTH);
 			stage.setTitle(NOMBRE_VISTA);
 			controller.idReserva.setDisable(true);
+			Usuario usuarioActual = SesionSingleton.getSesionSingleton().obtenerUsuarioActual();
+			if(usuarioActual!=null) {
+				// Es un usuario del tipo normal: Desactivar campos
+				controller.idLibro.setDisable(true);
+				controller.idUsuario.setDisable(true);
+				controller.fechaInicioReserva.setDisable(true);
+				controller.fechaFinReserva.setDisable(true);
+				controller.borrarId.setDisable(true);
+				controller.borrarId.setVisible(false);
+			}
+
 			stage.show();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -100,7 +118,12 @@ public class ReservaDetalleController {
 
 	@FXML
 	void borrar(ActionEvent event) {
-		System.out.println("Se ha pulsado borrar");
+		reserva.setActive(false);
+		isActive.setSelected(false);
+		Notifications.create()
+	        .title("Actualizacion")
+	        .text("Se ha actualizado la reserva")
+	        .showInformation();
 	}
 
 	private boolean validarFechaReserva() {
@@ -118,46 +141,102 @@ public class ReservaDetalleController {
 	 */
 	private boolean validarReserva() {
 		boolean reservaValida = true;
-		if (isActive.isSelected() && !reserva.isActive()) {
-			// Se esta intentnado activar una reserva desactivada. 
-			// Se comprueban las reserevas activas del libro (Nota: Solo deberia existir una reserva)
-			// Recuperar libro
-			// Buscar la reserva activa del libro
-			Optional<Libro> optLibro = LibreriaSingleton.getLibreria().buscarLibroPorId(reserva.getIdLibro());
-			if (optLibro.isPresent()) {
-				Libro libro = optLibro.get();
-				List<Reserva> reservasLibro = ReservaSingleton.getReservaSingleton().buscarReservaActivaPorLibro(libro);
-				if (!reservasLibro.isEmpty()) {
-					System.out.println("No se ha podido reservar el libro, ya hay una reserva activa de este libro");
-					reservaValida = false;
+//		Optional<Libro> optLibro = LibreriaSingleton.getLibreria().buscarLibroPorId(reserva.getIdLibro());
+		Optional<Libro> optLibro = LibreriaSingleton.getLibreria().buscarLibroPorId(Long.parseLong(idLibro.getText()));
+		if (!optLibro.isPresent()) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText("Se ha producido un error");
+			alert.setContentText("El libro al que hace referencia no existe.");
+			Scene scene = modificarButton.getScene();
+			alert.initOwner(scene.getWindow());
+			alert.showAndWait();
+			idLibro.setText("" + reserva.getIdLibro());
+			reservaValida = false;
+		} else {
+			if (isActive.isSelected() && !reserva.isActive()) {
+				// Se esta intentando activar una reserva desactivada.
+				// Se comprueban las reserevas activas del libro (Nota: Solo deberia existir una
+				// reserva)
+				// Recuperar libro
+				// Buscar la reserva activa del libro
+				if (optLibro.isPresent()) {
+					Libro libro = optLibro.get();
+					List<Reserva> reservasLibro = ReservaSingleton.getReservaSingleton()
+							.buscarReservaActivaPorLibro(libro);
+					if (!reservasLibro.isEmpty()) {
+						Alert alert = new Alert(AlertType.ERROR);
+						alert.setTitle("Error");
+						alert.setHeaderText("Se ha producido un error");
+						alert.setContentText("El libro al que hace referencia ya tiene una reserva activa.");
+						Scene scene = modificarButton.getScene();
+						alert.initOwner(scene.getWindow());
+						alert.showAndWait();
+						isActive.setSelected(false);
+						reservaValida = false;
+						System.out
+								.println("No se ha podido reservar el libro, ya hay una reserva activa de este libro");
+						reservaValida = false;
+					} else {
+						System.out.println("Se puede activar de nuevo la reserva.");
+						reservaValida = true;
+					}
+
 				} else {
-					System.out.println("Se puede activar de nuevo la reserva.");
-					reservaValida = true;
+					System.err.println("Se ha producido un error en los datos.");
+					System.err.println("Impossible. Perhaps the Archives Are Incomplete");
+					System.err.println("Error: No se ha podido recuperar el libro.");
+					reservaValida = false;
 				}
 
-			} else {
-				System.err.println("Se ha producido un error en los datos.");
-				System.err.println("Impossible. Perhaps the Archives Are Incomplete");
-				System.err.println("Error: No se ha podido recuperar el libro.");
-				reservaValida = false;
 			}
+
 		}
 		return reservaValida;
 	}
+	
+	private boolean validarUsuario() {
+		String usuarioId = idUsuario.getText();
+		Optional<Usuario> usuario = UsuariosSingleton.getRepoUsuarios().findUsuarioById(usuarioId);
+		boolean resultado = usuario.isPresent();
+		if(!resultado) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText("Se ha producido un error");
+			alert.setContentText("El usuario que ha introducido no existe.");
+			Scene scene = modificarButton.getScene();
+			alert.initOwner(scene.getWindow()); 
+			alert.showAndWait();
+			idUsuario.setText(reserva.getIdUsuario());
+		}
+		return resultado;
+	}
 
 	private boolean validarModificacion() {
-		return validarFechaReserva() && validarReserva();
+		return validarFechaReserva() && validarReserva() &&  validarUsuario();
+	}
+	
+	private void actualizarCampos() {
+		reserva.setActive(isActive.isSelected());
+		reserva.setFechaFinReserva(fechaFinReserva.getValue());
+		reserva.setFechaInicioReserva(fechaInicioReserva.getValue());
+		reserva.setIdLibro(Long.parseLong(idLibro.getText()));
+		reserva.setIdUsuario(idUsuario.getText());
 	}
 
 	@FXML
 	void modificar(ActionEvent event) {
 		System.out.println("Se ha pulsado modificar");
 		if (validarModificacion()) {
+			actualizarCampos();
+			Notifications.create()
+				.title("Actualizacion")
+				.text("Se ha actualizado la reserva")
+				.showInformation();
 			System.out.println("Actualizando reserva");
-		}else {
+		} else {
 			System.out.println("No se ha podido actualizar la reserva");
 		}
-		
 	}
 
 	@FXML

@@ -25,9 +25,16 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import modelos.Reserva;
+import modelos.Usuario;
 import repositorios.ReservaSingleton;
 
 public class ReservaListController {
+	
+	public static void mostrarlistaReservasActivasUsuario(Scene scene, Usuario usuario) throws IOException{
+		// Mostrar reservas usuario
+		List<Reserva> reservasList = ReservaSingleton.getReservaSingleton().buscarReservaActivaPorUsuario(usuario);
+		mostrarVista(scene, reservasList);
+	}
 	 
 	public static void mostrarListaReservasActivas(Scene scene) throws IOException {
 		// Mostrar vista lista reserva

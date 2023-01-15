@@ -5,6 +5,8 @@ package controladores;
 
 import com.jfoenix.controls.JFXButton;
 
+import controladores.reservas.ReservaListController;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -78,6 +80,14 @@ public class UsuarioController{
 
     @FXML
     void devolucionLibro(ActionEvent event) {
+    	try {
+        	System.out.println("Devolver libro");
+        	Node source = (Node) event.getSource();
+        	Usuario usuario = SesionSingleton.getSesionSingleton().obtenerUsuarioActual();
+        	ReservaListController.mostrarlistaReservasActivasUsuario(source.getScene(), usuario);
+    	} catch (IOException e) {
+    		e.printStackTrace();
+    	}
 
     }
 

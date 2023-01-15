@@ -8,6 +8,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.google.gson.Gson;
@@ -129,8 +130,8 @@ public class ReservaSingleton {
 		return reservas.stream().filter(r -> usuario.getiIdUsuario().equals(r.getIdUsuario())).collect(Collectors.toList());
 	}
 	
-	public List<Reserva> buscarReservaActivaPorUsuarioLibro(Usuario usuario, Libro libro) {
-		return reservas.stream().filter(r -> usuario.getiIdUsuario().equals(r.getIdUsuario()) && r.isActive() && libro.getId() == r.getIdLibro()).collect(Collectors.toList());
+	public Optional<Reserva> buscarReservaActivaPorUsuarioLibro(Usuario usuario, Libro libro) {
+		return reservas.stream().filter(r -> usuario.getiIdUsuario().equals(r.getIdUsuario()) && r.isActive() && libro.getId() == r.getIdLibro()).findFirst();
 	}
 	
 	public boolean libroReservado(Libro libro) {
