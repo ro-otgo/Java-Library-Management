@@ -57,6 +57,11 @@ public class Usuario {
 	public void setIdUsuario (String idUsuario) {
 		this.idUsuario = idUsuario;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Usuario [nombre=" + nombre + ", apellidos=" + apellidos + ", psw=" + psw + ", email=" + email
+				+ ", idUsuario=" + idUsuario + "]";
+	}
 
 }

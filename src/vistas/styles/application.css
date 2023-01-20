@@ -22,6 +22,7 @@
 
 .primary-button {
 	-fx-text-fill: #ffffff;
+	-fx-font-size: 18px;
 }
 
 .dark-button {
@@ -40,7 +41,59 @@
 	-fx-text-fill: #ffffff;
 }
 
-.botton-reservar {
+.button-reservar {
 	-jfx-toggle-color: #E45652;
 	-jfx-toggle-line-color: #ff887c;
+}
+
+.button-rounded, .button-light-emphasis{
+	-fx-background-radius: 15px;
+	-fx-border-radius: 15px;
+}
+
+.button-light-emphasis{
+	-fx-border-color: #808080;
+}
+
+.button-volver{
+	-fx-border-color: #808080;
+	-fx-text-fill: #ffffff;
+	-fx-font-size: 18px;
+	-fx-background-radius: 15px;
+	-fx-border-radius: 15px;
+}
+
+.button-borrar{
+	-fx-background-radius: 15px;
+	-fx-border-radius: 15px;
+	-fx-border-color: #FF0000;
+	-fx-text-fill: #e80000;
+	-fx-font-size: 18px;
+}
+
+.button-rounded-red{
+	-fx-border-color: #FF0000;
+	-fx-text-fill: #e80000;
+}
+
+.test{
+	-fx-focus-color: red;
+    -fx-faint-focus-color: #ff000022;
+    -jfx-unfocus-color: #4D4D4D;
+}
+
+/* https://stackoverflow.com/a/24702974 */
+/* https://github.com/sshahine/JFoenix/blob/9298c5fb8c4fc84315df9b7133926f176e986a70/jfoenix/src/main/java/com/jfoenix/controls/JFXColorPicker.java */
+.text-field-reserva {
+	-jfx-focus-color: #ffffff;
+	-jfx-unfocus-color: #808080;
+	-fx-text-fill: #808080;
+}
+.text-field-reserva:focused {
+	-fx-text-fill: #ffffff;
+}
+
+.label-style{
+	-fx-text-fill: #ffffff;
+	-fx-font-size: 18px;
 }

@@ -5,6 +5,8 @@ package controladores;
 
 import com.jfoenix.controls.JFXButton;
 
+import controladores.reservas.ReservaListController;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,13 +21,13 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import modelos.Usuario;
 import repositorios.BibliotecariosSingleton;
+import repositorios.SesionSingleton;
 import repositorios.UsuariosSingleton;
 
 public class UsuarioController{
 	
 	private static String NOMBRE_VISTA = "Pantalla usuario";
 	
-//pasar libros???? creo que no
 	public static void mostrarVistaPantallaUsuario(Usuario usuario) throws IOException{
 		FXMLLoader loader = new FXMLLoader(UsuarioController.class.getResource("/vistas/PantallaUsuario.fxml"));
 		UsuarioController pantallaUsuarioController = new UsuarioController();
@@ -72,11 +74,20 @@ public class UsuarioController{
     	BibliotecariosSingleton bibliotecariosRepo = BibliotecariosSingleton.getRepoUsuarios();
     	UsuariosSingleton usuariosRepo = UsuariosSingleton.getRepoUsuarios();
     	LoginController.mostrarLogin(loginStage, bibliotecariosRepo.getUsuarios(), usuariosRepo.getUsuarios()); 
+    	SesionSingleton.getSesionSingleton().actualizarUsuario(null);
     	stage.close();
     }
 
     @FXML
     void devolucionLibro(ActionEvent event) {
+    	try {
+        	System.out.println("Devolver libro");
+        	Node source = (Node) event.getSource();
+        	Usuario usuario = SesionSingleton.getSesionSingleton().obtenerUsuarioActual();
+        	ReservaListController.mostrarlistaReservasActivasUsuario(source.getScene(), usuario);
+    	} catch (IOException e) {
+    		e.printStackTrace();
+    	}
 
     }
 

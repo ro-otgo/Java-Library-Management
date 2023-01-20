@@ -6,12 +6,16 @@ package controladores;
  */
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
+import org.controlsfx.control.Notifications;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,14 +24,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
+import javafx.scene.control.SingleSelectionModel;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import modelos.Libro;
 import modelos.Reserva;
 import modelos.Usuario;
+import repositorios.LibreriaSingleton;
 import repositorios.ReservaSingleton;
 import repositorios.SesionSingleton;
 
@@ -36,17 +45,17 @@ import repositorios.SesionSingleton;
  * @author Rodrigo
  *
  */
-public class DetalleLibroController {
+public class DetalleLibroBibliotecarioController {
 	
 	/**
 	 * Mostrar vista detalles del libro seleccionado
 	 * @throws IOException
 	 */
-	public static void mostrarVistaDetallesLibro(Libro libro, Scene scene) throws IOException {
+	public static void mostrarVistaDetallesLibroBibliotecario(Libro libro, Scene scene) throws IOException {
 		// Mostrar vista ver detalles libro
-		String vistaPath = "/vistas/DetalleLibro.fxml";
-		FXMLLoader loaderDetallesLibro = new FXMLLoader(DetalleLibroController.class.getResource(vistaPath));
-		DetalleLibroController detallesLibroController = new DetalleLibroController();
+		String vistaPath = "/vistas/DetalleLibroBibliotecario.fxml";
+		FXMLLoader loaderDetallesLibro = new FXMLLoader(DetalleLibroBibliotecarioController.class.getResource(vistaPath));
+		DetalleLibroBibliotecarioController detallesLibroController = new DetalleLibroBibliotecarioController();
 		loaderDetallesLibro.setController(detallesLibroController);
 		detallesLibroController.setLibro(libro);
 		Parent root = loaderDetallesLibro.load();
@@ -54,13 +63,13 @@ public class DetalleLibroController {
 		stage.setScene(new Scene(root));
 		stage.initModality(Modality.WINDOW_MODAL);
 		stage.initOwner(scene.getWindow());
-		stage.setTitle(DetalleLibroController.NOMBRE_VENTANA);
-		stage.setMinHeight(DetalleLibroController.MIN_HEIGHT);
-		stage.setMinWidth(DetalleLibroController.MIN_WIDTH);
+		stage.setTitle(DetalleLibroBibliotecarioController.NOMBRE_VENTANA);
+		stage.setMinHeight(DetalleLibroBibliotecarioController.MIN_HEIGHT);
+		stage.setMinWidth(DetalleLibroBibliotecarioController.MIN_WIDTH);
 		stage.getIcons().add(new Image("/img/logo.jpg"));
 		stage.show();
 	}
-	
+
 	// Constante tamano: Ancho
 	public static final double MIN_WIDTH= 500;
 	// Constante tamano: Largo
@@ -70,7 +79,6 @@ public class DetalleLibroController {
 	
 	// Constante estado reserva libro
 	private static final String TEXT_RESERVADO = "Reservado";
-	private static final String TEXT_RESERVA_LIBRO = "Tiene reservado este libro";
 	private static final String TEXT_DISPONIBLE = "Disponible";
 	
 	private Libro libro;
@@ -80,6 +88,10 @@ public class DetalleLibroController {
 
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
+    
+
+    @FXML // fx:id="tabPane"
+    private TabPane tabPane; // Value injected by FXMLLoader
 
     @FXML // fx:id="idLabel"
     private Label idLabel; // Value injected by FXMLLoader
@@ -102,6 +114,76 @@ public class DetalleLibroController {
     @FXML // fx:id="volverButton"
     private JFXButton volverButton; // Value injected by FXMLLoader
 
+    
+    @FXML // fx:id="idLabel"
+    private Label idLabel1; // Value injected by FXMLLoader
+
+    @FXML // fx:id="tituloLabel1"
+    private JFXTextField tituloLabel1; // Value injected by FXMLLoader
+
+    @FXML // fx:id="autorLabel1"
+    private JFXTextField autorLabel1; // Value injected by FXMLLoader
+
+    @FXML // fx:id="ISBNLabel1"
+    private JFXTextField ISBNLabel1; // Value injected by FXMLLoader
+
+    @FXML // fx:id="reservadoLabel"
+    private Label reservadoLabel1; // Value injected by FXMLLoader
+    
+    @FXML // fx:id="modificarButton"
+    private JFXButton modificarButton; // Value injected by FXMLLoader
+
+    @FXML // fx:id="borrarButton1"
+    private JFXButton borrarButton1; // Value injected by FXMLLoader
+
+    
+    @FXML
+    void borrarButton(ActionEvent event) {
+		Node source = (Node) event.getSource();
+    	if(libro.isReservado()) {
+    		Alert alert = new Alert(AlertType.ERROR);
+    		alert.setTitle("Error");
+    		alert.setHeaderText("Se ha producido un error");
+    		alert.setContentText("No se puede borrar un libro reservado.");
+    		alert.initOwner(source.getScene().getWindow()); 
+    		alert.showAndWait();
+    		return;
+    	}
+//    	https://code.makery.ch/blog/javafx-dialogs-official/
+    	Alert confirmacionAlert = new Alert(AlertType.CONFIRMATION);
+    	confirmacionAlert.setTitle("Borrar libro");
+    	confirmacionAlert.setHeaderText("Se va a proceder a eliminar el libro seleccionado");
+    	confirmacionAlert.setContentText("¿Esta seguro de borrar el libro?");
+
+    	Optional<ButtonType> result = confirmacionAlert.showAndWait();
+    	if (result.get() == ButtonType.OK){
+    		LibreriaSingleton.getLibreria().removeLibro(libro);
+    		Notifications.create().title("Actualizacion libro").text("Se ha eliminado el libro").showInformation();
+    		Stage stage = (Stage) source.getScene().getWindow();
+        	stage.close();    		
+    	} else {
+        	Alert alert = new Alert(AlertType.INFORMATION);
+    		alert.setTitle("Informacion");
+    		alert.setHeaderText("Informacion");
+    		alert.setContentText("No se ha borrado el libro");
+    		alert.initOwner(source.getScene().getWindow()); 
+    		alert.show();
+    	}
+    }
+
+    @FXML
+    void modificar(ActionEvent event) {
+    	libro.setAutor(autorLabel1.getText());
+    	libro.setIsbn(ISBNLabel1.getText());
+    	libro.setTitulo(tituloLabel1.getText());
+    	Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Informacion");
+		alert.setHeaderText("Actualizacion libro");
+		alert.setContentText("Se ha actualizado el libro.");
+		Node source = (Node) event.getSource();
+		alert.initOwner(source.getScene().getWindow()); 
+		alert.showAndWait();
+    }
 
     /**
      * Reserva de libro
@@ -128,6 +210,7 @@ public class DetalleLibroController {
     	if (!reservado) {
     		// Crear la reserva
         	ReservaSingleton.getReservaSingleton().crearReserva(libro, usuario);
+        	reservadoLabel.setText(TEXT_RESERVADO);
         	Alert alert = new Alert(AlertType.INFORMATION);
     		alert.setTitle("Informacion");
     		alert.setHeaderText("Actualizacion reserva");
@@ -135,14 +218,16 @@ public class DetalleLibroController {
     		Node source = (Node) event.getSource();
     		alert.initOwner(source.getScene().getWindow()); 
     		alert.showAndWait();
-        	reservadoLabel.setText(TEXT_RESERVA_LIBRO);
     	}else {
     		System.out.println("Comprobando reservas");
     		Optional<Reserva> reservaOpt = ReservaSingleton.getReservaSingleton().buscarReservaActivaPorUsuarioLibro(usuario,libro);
     		if (reservaOpt.isPresent()) {
-    			// El usuario actual esta devolviendo el libro.
+//    		List<Reserva> reservas = ReservaSingleton.getReservaSingleton().buscarReservaActivaPorUsuarioLibro(usuario,libro);
+//    		if (!reservas.isEmpty()) {
+//    			Reserva reserva = reservas.get(0);
     			Reserva reserva = reservaOpt.get();
     			reserva.setActive(false);
+        		reservadoLabel.setText(TEXT_DISPONIBLE);
         		Alert alert = new Alert(AlertType.INFORMATION);
         		alert.setTitle("Informacion");
         		alert.setHeaderText("Actualizacion reserva");
@@ -150,10 +235,8 @@ public class DetalleLibroController {
         		Node source = (Node) event.getSource();
         		alert.initOwner(source.getScene().getWindow()); 
         		alert.showAndWait();
-        		reservadoLabel.setText(TEXT_DISPONIBLE);
     		}
     		else {
-    			// El usuario actual esta intentando reservar un libro que ya lo itene otro usuario.
     			Alert alert = new Alert(AlertType.ERROR);
         		alert.setTitle("Error");
         		alert.setHeaderText("Se ha producido un error");
@@ -189,7 +272,20 @@ public class DetalleLibroController {
         assert reservadoLabel != null : "fx:id=\"reservadoLabel\" was not injected: check your FXML file 'DetalleLibro.fxml'.";
         assert reservarButton != null : "fx:id=\"reservarButton\" was not injected: check your FXML file 'DetalleLibro.fxml'.";
         assert volverButton != null : "fx:id=\"volverButton\" was not injected: check your FXML file 'DetalleLibro.fxml'.";
+        
+        assert idLabel1 != null : "fx:id=\"idLabel1\" was not injected: check your FXML file 'DetalleLibroBibliotecario.fxml'.";
+        assert tituloLabel1 != null : "fx:id=\"tituloLabel1\" was not injected: check your FXML file 'DetalleLibroBibliotecario.fxml'.";
+        assert autorLabel1 != null : "fx:id=\"autorLabel1\" was not injected: check your FXML file 'DetalleLibroBibliotecario.fxml'.";
+        assert ISBNLabel1 != null : "fx:id=\"ISBNLabel1\" was not injected: check your FXML file 'DetalleLibroBibliotecario.fxml'.";
+        assert reservadoLabel1 != null : "fx:id=\"reservadoLabel1\" was not injected: check your FXML file 'DetalleLibroBibliotecario.fxml'.";
+        assert modificarButton != null : "fx:id=\"modificarButton\" was not injected: check your FXML file 'DetalleLibroBibliotecario.fxml'.";
+        assert borrarButton1 != null : "fx:id=\"borrarButton1\" was not injected: check your FXML file 'DetalleLibroBibliotecario.fxml'.";
+
+
     	populateVista();
+//    	https://stackoverflow.com/a/6916307/8873596
+    	SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
+    	selectionModel.select(1);
     	System.out.println("Se ha creado la vista");
     }
 
@@ -199,7 +295,22 @@ public class DetalleLibroController {
 	private void populateVista() {
 		if (libro!=null) {
 			populateVistaUsuario();
+    		populateVistaBibliotecario();
     	}
+	}
+
+	private void populateVistaBibliotecario() {
+		idLabel1.setText(String.valueOf(libro.getId()));
+		tituloLabel1.setText(libro.getTitulo());
+		autorLabel1.setText(libro.getAutor());
+		ISBNLabel1.setText(libro.getIsbn());
+		if (libro.isReservado()) {
+			List<Reserva> reservaList = ReservaSingleton.getReservaSingleton().buscarReservaActivaPorLibro(libro);
+			Reserva reserva = reservaList.get(0);
+			reservadoLabel1.setText("" + reserva.getId());
+		}else {
+			reservadoLabel1.setText(TEXT_DISPONIBLE);
+		}
 	}
 
 	private void populateVistaUsuario() {
@@ -208,12 +319,9 @@ public class DetalleLibroController {
 		autorLabel.setText(libro.getAutor());
 		ISBNLabel.setText(libro.getIsbn());
 		if (libro.isReservado()) {
-			reservadoLabel.setText(TEXT_RESERVADO);
-			Usuario usuarioActual = SesionSingleton.getSesionSingleton().obtenerUsuarioActual();
-			Optional<Reserva> reserva = ReservaSingleton.getReservaSingleton().buscarReservaActivaPorUsuarioLibro(usuarioActual, libro);
-			if(reserva.isPresent()) {
-				reservadoLabel.setText(TEXT_RESERVA_LIBRO);
-			}
+			List<Reserva> reservaList = ReservaSingleton.getReservaSingleton().buscarReservaActivaPorLibro(libro);
+			Reserva reserva = reservaList.get(0);
+			reservadoLabel.setText(reserva.getIdUsuario());
 		}else {
 			reservadoLabel.setText(TEXT_DISPONIBLE);
 		}

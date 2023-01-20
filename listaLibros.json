@@ -2,91 +2,78 @@
   {
     "titulo": "Don Quijote de la Mancha",
     "autor": "Miguel de Cervantes",
-    "reservado": true,
     "isbn": "9780936388878",
     "id": 1
   },
   {
     "titulo": "La familia de Pascual Duarte",
     "autor": "Camilo Jose Cela",
-    "reservado": true,
     "isbn": "9788423307326",
     "id": 2
   },
   {
     "titulo": "Ficciones",
     "autor": "Jorge Luis Borges",
-    "reservado": false,
     "isbn": "9780245528798",
     "id": 3
   },
   {
     "titulo": "Los santos inocentes",
     "autor": "Miguel Delibes",
-    "reservado": true,
     "isbn": "9783351038786",
     "id": 4
   },
   {
     "titulo": "La Celestina",
     "autor": " Fernando de Rojas",
-    "reservado": false,
     "isbn": "9788431639211",
     "id": 5
   },
   {
     "titulo": "Niebla",
     "autor": "Miguel de Unamuno",
-    "reservado": false,
     "isbn": "9781450582506",
     "id": 6
   },
   {
     "titulo": "La sombra del cipres es alargada",
     "autor": "Miguel Delibes",
-    "reservado": false,
     "isbn": "9788423304134",
     "id": 7
   },
   {
     "titulo": "Nada",
     "autor": "Carmen Laforet",
-    "reservado": true,
     "isbn": "9788423336326",
     "id": 8
   },
   {
     "titulo": "Requiem por un campesino espanol",
     "autor": "Ramon J. Sender",
-    "reservado": true,
     "isbn": "9789871136483",
     "id": 9
   },
   {
     "titulo": "Lagrimas en la lluvia",
     "autor": "Rosa Montero",
-    "reservado": true,
     "isbn": "9782864249818",
     "id": 10
   },
   {
     "titulo": "Campos de Castilla",
     "autor": "Antonio Machado",
-    "reservado": false,
     "isbn": "9788420675763",
     "id": 11
   },
   {
     "titulo": "Luces de Bohemia",
     "autor": "Ramon Maria del Valle-Inclan",
-    "reservado": true,
     "isbn": "9788416968398",
     "id": 12
   },
   {
-    "titulo": "Cien años de soledad",
-    "autor": "Gabriel García Márquez",
-    "reservado": false,
+    "titulo": "Cien aï¿½os de soledad",
+    "autor": "Gabriel Garcï¿½a Mï¿½rquez",
     "isbn": "9780060114183",
     "id": 13
   }
