@@ -173,16 +173,25 @@ public class DetalleLibroBibliotecarioController {
 
     @FXML
     void modificar(ActionEvent event) {
-    	libro.setAutor(autorLabel1.getText());
-    	libro.setIsbn(ISBNLabel1.getText());
-    	libro.setTitulo(tituloLabel1.getText());
-    	Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Informacion");
-		alert.setHeaderText("Actualizacion libro");
-		alert.setContentText("Se ha actualizado el libro.");
-		Node source = (Node) event.getSource();
-		alert.initOwner(source.getScene().getWindow()); 
-		alert.showAndWait();
+    	if(comprobarCampos()) {
+    		libro.setAutor(autorLabel1.getText());
+    		libro.setIsbn(ISBNLabel1.getText());
+    		libro.setTitulo(tituloLabel1.getText());
+    		Alert alert = new Alert(AlertType.INFORMATION);
+    		alert.setTitle("Informacion");
+    		alert.setHeaderText("Actualizacion libro");
+    		alert.setContentText("Se ha actualizado el libro.");
+    		Node source = (Node) event.getSource();
+    		alert.initOwner(source.getScene().getWindow()); 
+    		alert.showAndWait();
+    	}
+    	else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText("Se ha producido un error");
+			alert.setContentText("No puede haber campos vacios.");
+			alert.showAndWait();
+    	}
     }
 
     /**
@@ -334,5 +343,15 @@ public class DetalleLibroBibliotecarioController {
 	public void setLibro(Libro libro) {
 		this.libro = libro;
 	}
+	
+    // Comprueba que no se deja ningun campo vacio
+    boolean comprobarCampos() {
+    	if(autorLabel1.getText().isEmpty()||ISBNLabel1.getText().isEmpty()||tituloLabel1.getText().isEmpty())
+    		return false;
+    	else
+    		return true;
+    }
     
 }
+
+
