@@ -14,6 +14,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import modelos.Libro;
 
 /**
@@ -77,6 +79,11 @@ public class LibreriaSingleton {
 	public void addLibro(Libro libro) {
 		libros.add(libro);
 		escribirLibros();
+    	Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Informacion");
+		alert.setHeaderText("Crear libro");
+		alert.setContentText("Se ha registrado el libro en la base de datos.");
+		alert.showAndWait();
 	}
 	
 	public void removeLibro(Libro libro) {
