@@ -23,6 +23,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import javafx.util.Callback;
 import modelos.Reserva;
 import modelos.Usuario;
@@ -30,22 +31,24 @@ import repositorios.ReservaSingleton;
 
 public class ReservaListController {
 	
-	public static void mostrarlistaReservasActivasUsuario(Scene scene, Usuario usuario) throws IOException{
+	private Window vistaPrincipalWindow;
+	
+	public static void mostrarlistaReservasActivasUsuario(Scene menuPrincipalScene, Usuario usuario) throws IOException{
 		// Mostrar reservas usuario
 		List<Reserva> reservasList = ReservaSingleton.getReservaSingleton().buscarReservaActivaPorUsuario(usuario);
-		mostrarVista(scene, reservasList);
+		mostrarVista(menuPrincipalScene, reservasList);
 	}
 	 
-	public static void mostrarListaReservasActivas(Scene scene) throws IOException {
+	public static void mostrarListaReservasActivas(Scene menuPrincipalScene) throws IOException {
 		// Mostrar vista lista reserva
 		List<Reserva> reservasList = ReservaSingleton.getReservaSingleton().getReservasActivas();
-		mostrarVista(scene, reservasList);
+		mostrarVista(menuPrincipalScene, reservasList);
 	}
 
-	public static void mostrarListaReservas(Scene scene) throws IOException {
+	public static void mostrarListaReservas(Scene menuPrincipalScene) throws IOException {
 		// Mostrar vista lista reserva
 		List<Reserva> reservasList = ReservaSingleton.getReservaSingleton().getReservas();
-		mostrarVista(scene, reservasList);
+		mostrarVista(menuPrincipalScene, reservasList);
 	}
 
 	private static void mostrarVista(Scene scene, List<Reserva> reservasList) throws IOException {
@@ -53,6 +56,7 @@ public class ReservaListController {
 		ReservaListController controller = new ReservaListController(
 				reservasList);
 		loader.setController(controller);
+		controller.vistaPrincipalWindow = scene.getWindow();
 		Parent root = loader.load();
 		Stage stage = new Stage();
 		stage.setScene(new Scene(root));
@@ -100,7 +104,7 @@ public class ReservaListController {
 
 			@Override
 			public ListCell<Reserva> call(ListView<Reserva> param) {
-				return new ReservaListaCell();
+				return new ReservaListaCell(vistaPrincipalWindow);
 			}
 
 		});

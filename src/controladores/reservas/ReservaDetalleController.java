@@ -28,6 +28,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import modelos.Libro;
 import modelos.Reserva;
 import modelos.Usuario;
@@ -47,7 +48,7 @@ public class ReservaDetalleController {
 	// Constante tamano: Largo
 	public static final double MIN_HEIGHT= 500;
 
-	public static void mostrarReservaDetalle(Reserva reserva, Control control) {
+	public static void mostrarReservaDetalle(Reserva reserva, Control control, Window ventanaPrincipalWindow) {
 		try {
 			FXMLLoader loader = new FXMLLoader(
 					ReservaDetalleController.class.getResource("/vistas/DetalleReserva.fxml"));
@@ -59,7 +60,7 @@ public class ReservaDetalleController {
 			stage.setScene(new Scene(root));
 			stage.getIcons().add(new Image("/img/logo.jpg"));
 			stage.initModality(Modality.WINDOW_MODAL);
-			stage.initOwner(control.getScene().getWindow());
+			stage.initOwner(ventanaPrincipalWindow);
 			stage.setMinHeight(MIN_HEIGHT);
 			stage.setMinWidth(MIN_WIDTH);
 			stage.setTitle(NOMBRE_VISTA);
@@ -74,7 +75,11 @@ public class ReservaDetalleController {
 				controller.borrarId.setDisable(true);
 				controller.borrarId.setVisible(false);
 			}
-
+			// Cerrar vista listo Reservas
+			Window windowListaReserva = control.getScene().getWindow();
+			Stage stageListaReserva = (Stage) windowListaReserva;
+			stageListaReserva.close();
+			// Mostrar  vista detalles Reservas
 			stage.show();
 		} catch (IOException e) {
 			e.printStackTrace();

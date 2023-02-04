@@ -16,13 +16,16 @@ import javafx.scene.control.Label;
 
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Window;
 import modelos.Reserva;
 
 public class ReservaListaCell extends ListCell<Reserva> {
 
 	private Reserva reserva;
+	private Window ventanaPrincipalWindow;
 	
-    public ReservaListaCell() {
+    public ReservaListaCell(Window ventanaPrincipalWindow) {
+    	this.ventanaPrincipalWindow = ventanaPrincipalWindow;
 		loadFXML();
 	}
     
@@ -96,7 +99,7 @@ public class ReservaListaCell extends ListCell<Reserva> {
 	@FXML
 	void detalleReserva(ActionEvent event) {
 		System.out.println("Se ha pulsado ver detalle reserva");
-		ReservaDetalleController.mostrarReservaDetalle(reserva, this);
+		ReservaDetalleController.mostrarReservaDetalle(reserva, this, ventanaPrincipalWindow);
 	}
 
 	@FXML // This method is called by the FXMLLoader when initialization is complete
