@@ -98,9 +98,10 @@ public class LibrosListController {
     void initialize() {
         assert listaView != null : "fx:id=\"listaView\" was not injected: check your FXML file 'LibrosList.fxml'.";
 
-
+//        https://docs.oracle.com/javafx/2/ui_controls/list-view.htm
+//        https://stackoverflow.com/a/13270833/8873596
+//        https://www.turais.de/how-to-custom-listview-cell-in-javafx/
         listaView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Libro>() {
-
 			@Override
 			public void changed(ObservableValue<? extends Libro> observable, Libro oldValue, Libro newValue) {
 				System.out.println("Clicked-Old: " + oldValue);
@@ -112,6 +113,7 @@ public class LibrosListController {
         });
 
         listaView.setOnMouseClicked(
+//        		https://stackoverflow.com/a/9726325
         		new EventHandler<MouseEvent>() {
 
 					@Override
@@ -131,8 +133,8 @@ public class LibrosListController {
 			}
         	
         });
+//        https://stackoverflow.com/a/20485770
         Label placeHolder = new Label("No hay ningun libro");
         listaView.setPlaceholder(placeHolder);
-
     }
 }
