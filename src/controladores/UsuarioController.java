@@ -16,7 +16,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import modelos.Usuario;
@@ -93,7 +95,14 @@ public class UsuarioController{
 
     @FXML
     void reservarLibro(ActionEvent event) {
-
+    	Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Información");
+		alert.setHeaderText("Reserva de libros");
+		alert.setContentText("Seleccione el libro que quiere reservar del listado de libros.");
+		Node source = (Node) event.getSource();
+		Scene scene = (Scene) source.getScene();
+		alert.initOwner(scene.getWindow());
+		alert.showAndWait();
     }
 
     @FXML
