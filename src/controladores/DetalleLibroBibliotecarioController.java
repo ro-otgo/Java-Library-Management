@@ -25,7 +25,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.Tab;
@@ -33,6 +32,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import modelos.Libro;
 import modelos.Reserva;
 import modelos.Usuario;
@@ -51,7 +51,7 @@ public class DetalleLibroBibliotecarioController {
 	 * Mostrar vista detalles del libro seleccionado
 	 * @throws IOException
 	 */
-	public static void mostrarVistaDetallesLibroBibliotecario(Libro libro, Scene scene) throws IOException {
+	public static void mostrarVistaDetallesLibroBibliotecario(Libro libro, Scene listadoLibrosScene, Window ventanaBibliotecarioWindow) throws IOException {
 		// Mostrar vista ver detalles libro
 		String vistaPath = "/vistas/DetalleLibroBibliotecario.fxml";
 		FXMLLoader loaderDetallesLibro = new FXMLLoader(DetalleLibroBibliotecarioController.class.getResource(vistaPath));
@@ -62,11 +62,16 @@ public class DetalleLibroBibliotecarioController {
 		Stage stage = new Stage();
 		stage.setScene(new Scene(root));
 		stage.initModality(Modality.WINDOW_MODAL);
-		stage.initOwner(scene.getWindow());
+		stage.initOwner(ventanaBibliotecarioWindow);
 		stage.setTitle(DetalleLibroBibliotecarioController.NOMBRE_VENTANA);
 		stage.setMinHeight(DetalleLibroBibliotecarioController.MIN_HEIGHT);
 		stage.setMinWidth(DetalleLibroBibliotecarioController.MIN_WIDTH);
 		stage.getIcons().add(new Image("/img/logo.jpg"));
+		// Cerrar vista listo libros
+		Window listadoLibroWindow = listadoLibrosScene.getWindow();
+		Stage listadoLibroStage = (Stage) listadoLibroWindow;
+		listadoLibroStage.close();
+		// Mostrar  vista detalles libros
 		stage.show();
 	}
 
@@ -159,8 +164,9 @@ public class DetalleLibroBibliotecarioController {
     	if (result.get() == ButtonType.OK){
     		LibreriaSingleton.getLibreria().removeLibro(libro);
     		Notifications.create().title("Actualizacion libro").text("Se ha eliminado el libro").showInformation();
+    		
     		Stage stage = (Stage) source.getScene().getWindow();
-        	stage.close();    		
+    		stage.close();
     	} else {
         	Alert alert = new Alert(AlertType.INFORMATION);
     		alert.setTitle("Informacion");

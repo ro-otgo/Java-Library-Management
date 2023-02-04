@@ -40,11 +40,15 @@ import repositorios.LibreriaSingleton;
  */
 public class LibrosListController {
 	
+	private Window bibliotecarioWindow;
+	
 	public static void mostarLibrosList(Scene scene)  throws IOException{
 		// Mostrar vista lista libro
 		FXMLLoader loaderListaLibros = new FXMLLoader(LibrosListController.class.getResource("/vistas/LibrosList.fxml"));
 		LibrosListController listaLibroController = new LibrosListController(LibreriaSingleton.getLibreria().getLibrosSinBorrar());
 		loaderListaLibros.setController(listaLibroController);
+		listaLibroController.bibliotecarioWindow = scene.getWindow();
+
 		Parent root = loaderListaLibros.load();
 		Stage stage = new Stage();
 		stage.setScene(new Scene(root));
@@ -119,7 +123,7 @@ public class LibrosListController {
 
 			@Override
 			public ListCell<Libro> call(ListView<Libro> param) {
-				return new LibroListaCell();
+				return new LibroListaCell(bibliotecarioWindow);
 			}
         	
         });

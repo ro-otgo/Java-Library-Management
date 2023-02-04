@@ -12,25 +12,20 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
+import javafx.stage.Window;
 import modelos.Libro;
-import repositorios.BibliotecariosSingleton;
 import repositorios.SesionSingleton;
-import repositorios.UsuariosSingleton;
 
 public class LibroListaCell extends ListCell<Libro>{
 	
 	private Libro libro;
+	private Window ventanaBibliotecarioWindow;
 	
-    public LibroListaCell() {
+    public LibroListaCell(Window main) {
+    	this.ventanaBibliotecarioWindow = main;
 		loadFXML();
 	}
 
@@ -122,9 +117,9 @@ public class LibroListaCell extends ListCell<Libro>{
 	 */
 	private void mostrarVistaDetallesLibro() throws IOException {
 		if (SesionSingleton.getSesionSingleton().obtenerUsuarioActual() == null) {
-			DetalleLibroBibliotecarioController.mostrarVistaDetallesLibroBibliotecario(libro, getScene());
+			DetalleLibroBibliotecarioController.mostrarVistaDetallesLibroBibliotecario(libro, getScene(), ventanaBibliotecarioWindow);
 		} else {
-			DetalleLibroController.mostrarVistaDetallesLibro(libro, getScene());
+			DetalleLibroController.mostrarVistaDetallesLibro(libro, getScene(), ventanaBibliotecarioWindow);
 		}
 	}
 

@@ -9,7 +9,6 @@ import com.jfoenix.controls.JFXButton;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -20,11 +19,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import modelos.Libro;
 import modelos.Reserva;
 import modelos.Usuario;
@@ -42,7 +41,7 @@ public class DetalleLibroController {
 	 * Mostrar vista detalles del libro seleccionado
 	 * @throws IOException
 	 */
-	public static void mostrarVistaDetallesLibro(Libro libro, Scene scene) throws IOException {
+	public static void mostrarVistaDetallesLibro(Libro libro, Scene escenaListadoLibrosScene, Window ventanaUsuarioWindow) throws IOException {
 		// Mostrar vista ver detalles libro
 		String vistaPath = "/vistas/DetalleLibro.fxml";
 		FXMLLoader loaderDetallesLibro = new FXMLLoader(DetalleLibroController.class.getResource(vistaPath));
@@ -53,11 +52,16 @@ public class DetalleLibroController {
 		Stage stage = new Stage();
 		stage.setScene(new Scene(root));
 		stage.initModality(Modality.WINDOW_MODAL);
-		stage.initOwner(scene.getWindow());
+		stage.initOwner(ventanaUsuarioWindow);
 		stage.setTitle(DetalleLibroController.NOMBRE_VENTANA);
 		stage.setMinHeight(DetalleLibroController.MIN_HEIGHT);
 		stage.setMinWidth(DetalleLibroController.MIN_WIDTH);
 		stage.getIcons().add(new Image("/img/logo.jpg"));
+		// Cerrar vista listo libros
+		Window windowListaLibros = escenaListadoLibrosScene.getWindow();
+		Stage stageListaLibros = (Stage) windowListaLibros;
+		stageListaLibros.close();
+		// Mostrar  vista detalles libros
 		stage.show();
 	}
 	
