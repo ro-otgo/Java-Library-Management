@@ -67,6 +67,10 @@ public class LibreriaSingleton {
 		}
 		return libreria;
 	}
+	
+	public List<Libro> getLibrosSinBorrar(){
+		return libros.stream().filter(l->!l.isBorrado()).collect(Collectors.toList());
+	}
 
 	/**
 	 * Se devuelven los libros
@@ -87,7 +91,8 @@ public class LibreriaSingleton {
 	}
 	
 	public void removeLibro(Libro libro) {
-		libros.remove(libro);
+		libro.setBorrado(true);
+//		libros.remove(libro);
 		escribirLibros();
 	}
 	

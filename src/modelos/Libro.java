@@ -9,6 +9,7 @@ public class Libro {
 	private String titulo;
 	private String autor;
 	private String isbn;
+	private boolean borrado;
 
 	private transient boolean reservado;
 	private long id;
@@ -28,6 +29,7 @@ public class Libro {
 		this.isbn = builder.isbn;
 		this.reservado = builder.reservado;
 		this.id = builder.id;
+		this.borrado = builder.borrado;
 	}
 
 	public String getTitulo() {
@@ -73,6 +75,14 @@ public class Libro {
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
+	
+	public boolean isBorrado() {
+		return borrado;
+	}
+
+	public void setBorrado(boolean borrado) {
+		this.borrado = borrado;
+	}
 
 	@Override
 	public String toString() {
@@ -86,13 +96,14 @@ public class Libro {
 	public static void setGeneratedId(long generatedId) {
 		Libro.generatedId = generatedId;
 	}
-
+	
 	public static class LibroBuilder {
 
 		private String titulo;
 		private String autor;
 		private String isbn;
 		private boolean reservado = false;
+		private boolean borrado = false;
 		private long id;
 
 		public LibroBuilder setTitulo(String titulo) {

@@ -53,7 +53,7 @@ public class LibrosListController {
 	public static void mostarLibrosList(Scene scene)  throws IOException{
 		// Mostrar vista lista libro
 		FXMLLoader loaderListaLibros = new FXMLLoader(LibrosListController.class.getResource("/vistas/LibrosList.fxml"));
-		LibrosListController listaLibroController = new LibrosListController(LibreriaSingleton.getLibreria().getLibros());
+		LibrosListController listaLibroController = new LibrosListController(LibreriaSingleton.getLibreria().getLibrosSinBorrar());
 		loaderListaLibros.setController(listaLibroController);
 		Parent root = loaderListaLibros.load();
 		Stage stage = new Stage();
@@ -83,7 +83,7 @@ public class LibrosListController {
 	
 	private ObservableList<Libro> items;
 
-	private List<Libro> libros = new ArrayList<Libro>();
+	private List<Libro> libros;
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
