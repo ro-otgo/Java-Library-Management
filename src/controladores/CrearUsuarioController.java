@@ -20,10 +20,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
 
 import modelos.Usuario;
 import repositorios.UsuariosSingleton;
@@ -104,14 +107,32 @@ public class CrearUsuarioController {
     	
         // Campo vacio
     	if(nombre.getText().isEmpty() || apellidos.getText().isEmpty() || email.getText().isEmpty() 
-    		|| idUsuario.getText().isEmpty() || password.getText().isEmpty() || rePassword.getText().isEmpty()) 
-    		wrong.setText("Porfavor rellene todos los campos.");
+    		|| idUsuario.getText().isEmpty() || password.getText().isEmpty() || rePassword.getText().isEmpty())
+    	{
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText("Se ha producido un error");
+			alert.setContentText("Porfavor rellene todos los campos.");
+			alert.showAndWait();
+    	}
     	
     	else if(longitudId(idUsuario.getText()))
-    		wrong.setText("El nombre de usuario debe tener 8 caracteres");
+    	{
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText("Se ha producido un error");
+			alert.setContentText("El nombre de usuario debe tener 8 caracteres");
+			alert.showAndWait();
+    	}
     	
     	else if(validarUsuario(idUsuario.getText()) || validarBibliotecario(idUsuario.getText()))
-    		wrong.setText("Nombre de usuario ya existe, introduzca uno distino");
+    	{
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText("Se ha producido un error");
+			alert.setContentText("El nombre de usuario ya existe, introduzca uno distino");
+			alert.showAndWait();
+    	}
     	
     	else if(validarPassword(password.getText(), rePassword.getText())){
     		
@@ -122,10 +143,15 @@ public class CrearUsuarioController {
         	usuario.setPsw(rePassword.getText());
         	usuario.setIdUsuario(idUsuario.getText());
         	UsuariosSingleton.getRepoUsuarios().addUsuario(usuario);
-        	wrong.setText("Usuario creado");
+        	stage.close();
     	}
-    	else
-    		wrong.setText("La contraseña debe tener 8 caracteres");
+    	else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText("Se ha producido un error");
+			alert.setContentText("La contraseña debe tener 8 caracteres");
+			alert.showAndWait();
+    	}
     	}
    	
 

@@ -12,11 +12,14 @@
 
 <AnchorPane prefHeight="630.0" prefWidth="780.0" style="-fx-background-color: #9C2B27;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <JFXTextField fx:id="nombre" focusColor="#6cd044" labelFloat="true" layoutX="271.0" layoutY="130.0" prefHeight="25.0" prefWidth="240.0" promptText="Nombre" unFocusColor="#e4dcdc">
+      <JFXTextField fx:id="nombre" focusColor="WHITE" labelFloat="true" layoutX="271.0" layoutY="130.0" prefHeight="25.0" prefWidth="240.0" promptText="Nombre" styleClass="texto-blanco" stylesheets="@styles/application.css" unFocusColor="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
-         </cursor></JFXTextField>
-      <JFXPasswordField fx:id="password" focusColor="#6cd044" labelFloat="true" layoutX="271.0" layoutY="347.0" prefHeight="25.0" prefWidth="240.0" promptText="Contraseña" unFocusColor="#d7cccc">
+         </cursor>
+         <font>
+            <Font size="14.0" />
+         </font></JFXTextField>
+      <JFXPasswordField fx:id="password" focusColor="WHITE" labelFloat="true" layoutX="271.0" layoutY="347.0" prefHeight="25.0" prefWidth="240.0" promptText="Contraseña" styleClass="texto-blanco" stylesheets="@styles/application.css" unFocusColor="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></JFXPasswordField>
@@ -25,20 +28,23 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="wrong" alignment="TOP_CENTER" layoutX="44.0" layoutY="443.0" prefHeight="21.0" prefWidth="692.0" />
-      <JFXTextField fx:id="apellidos" focusColor="#6cd044" labelFloat="true" layoutX="270.0" layoutY="183.0" prefHeight="25.0" prefWidth="240.0" promptText="Apellidos" unFocusColor="#e4dcdc">
+      <Label fx:id="wrong" alignment="TOP_CENTER" layoutX="44.0" layoutY="443.0" prefHeight="21.0" prefWidth="692.0" styleClass="texto-blanco" stylesheets="@styles/application.css" />
+      <JFXTextField fx:id="apellidos" focusColor="WHITE" labelFloat="true" layoutX="270.0" layoutY="183.0" prefHeight="25.0" prefWidth="240.0" promptText="Apellidos" styleClass="texto-blanco" stylesheets="@styles/application.css" unFocusColor="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="14.0" />
+         </font></JFXTextField>
+      <JFXTextField fx:id="email" focusColor="WHITE" labelFloat="true" layoutX="271.0" layoutY="238.0" prefHeight="25.0" prefWidth="240.0" promptText="Email" styleClass="texto-blanco" stylesheets="@styles/application.css" unFocusColor="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></JFXTextField>
-      <JFXTextField fx:id="email" focusColor="#6cd044" labelFloat="true" layoutX="271.0" layoutY="238.0" prefHeight="25.0" prefWidth="240.0" promptText="Email" unFocusColor="#e4dcdc">
+      <JFXTextField fx:id="idUsuario" focusColor="WHITE" labelFloat="true" layoutX="271.0" layoutY="291.0" prefHeight="25.0" prefWidth="240.0" promptText="Nombre de usuario" styleClass="texto-blanco" stylesheets="@styles/application.css" unFocusColor="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></JFXTextField>
-      <JFXTextField fx:id="idUsuario" focusColor="#6cd044" labelFloat="true" layoutX="271.0" layoutY="291.0" prefHeight="25.0" prefWidth="240.0" promptText="Nombre de usuario" unFocusColor="#e4dcdc">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></JFXTextField>
-      <JFXPasswordField fx:id="rePassword" focusColor="#6cd044" labelFloat="true" layoutX="271.0" layoutY="394.0" prefHeight="25.0" prefWidth="240.0" promptText="Repita contraseña" unFocusColor="#d7cccc">
+      <JFXPasswordField fx:id="rePassword" focusColor="WHITE" labelFloat="true" layoutX="271.0" layoutY="394.0" prefHeight="25.0" prefWidth="240.0" promptText="Repita contraseña" styleClass="texto-blanco" stylesheets="@styles/application.css" unFocusColor="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></JFXPasswordField>

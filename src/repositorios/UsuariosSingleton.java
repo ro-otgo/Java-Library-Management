@@ -15,6 +15,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import modelos.Usuario;
 
 public class UsuariosSingleton {
@@ -70,5 +72,10 @@ public class UsuariosSingleton {
 	public void addUsuario(Usuario nuevoUsuario) {
 		usuarios.add(nuevoUsuario);
 		escribirUsuarios();
+    	Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Informacion");
+		alert.setHeaderText("Crear usuario");
+		alert.setContentText("Se ha registrado el usuario en la base de datos.");
+		alert.showAndWait();
 	}
 }
