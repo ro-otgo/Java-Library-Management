@@ -40,5 +40,12 @@
     "psw": "fran1234",
     "email": "prueba@asdf",
     "idUsuario": "fran1234"
+  },
+  {
+    "nombre": "Hector",
+    "apellidos": "apellido",
+    "psw": "12345678",
+    "email": "hector@email.com",
+    "idUsuario": "hector11"
   }
 ]

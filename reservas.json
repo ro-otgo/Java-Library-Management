@@ -6,61 +6,77 @@
     "isActive": false,
     "fechaInicioReserva": {
       "year": 2023,
-      "month": 1,
-      "day": 13
+      "month": 2,
+      "day": 10
     },
     "fechaFinReserva": {
       "year": 2023,
-      "month": 1,
-      "day": 20
+      "month": 2,
+      "day": 17
     }
   },
   {
     "id": 3,
     "idUsuario": "Usuario_0",
     "idLibro": 2,
-    "isActive": true,
+    "isActive": false,
     "fechaInicioReserva": {
       "year": 2023,
-      "month": 1,
-      "day": 13
+      "month": 2,
+      "day": 10
     },
     "fechaFinReserva": {
       "year": 2023,
-      "month": 1,
-      "day": 20
+      "month": 2,
+      "day": 17
     }
   },
   {
     "id": 4,
     "idUsuario": "Usuario_0",
-    "idLibro": 1,
-    "isActive": true,
+    "idLibro": 3,
+    "isActive": false,
     "fechaInicioReserva": {
       "year": 2023,
-      "month": 1,
-      "day": 13
+      "month": 2,
+      "day": 10
     },
     "fechaFinReserva": {
       "year": 2023,
-      "month": 1,
-      "day": 20
+      "month": 2,
+      "day": 17
     }
   },
   {
     "id": 5,
     "idUsuario": "Usuario_0",
-    "idLibro": 3,
+    "idLibro": 10,
     "isActive": true,
     "fechaInicioReserva": {
       "year": 2023,
-      "month": 1,
-      "day": 13
+      "month": 2,
+      "day": 10
     },
     "fechaFinReserva": {
       "year": 2023,
-      "month": 1,
-      "day": 20
+      "month": 2,
+      "day": 17
+    }
+  },
+  {
+    "id": 5,
+    "idUsuario": "Usuario_0",
+    "idLibro": 1,
+    "isActive": true,
+    "fechaInicioReserva": {
+      "year": 2023,
+      "month": 2,
+      "day": 10
+    },
+    "fechaFinReserva": {
+      "year": 2023,
+      "month": 2,
+      "day": 12
     }
   }
 ]

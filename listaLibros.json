@@ -3,78 +3,98 @@
     "titulo": "Don Quijote de la Mancha",
     "autor": "Miguel de Cervantes",
     "isbn": "9780936388878",
+    "borrado": false,
     "id": 1
   },
   {
     "titulo": "La familia de Pascual Duarte",
     "autor": "Camilo Jose Cela",
     "isbn": "9788423307326",
+    "borrado": false,
     "id": 2
   },
   {
     "titulo": "Ficciones",
     "autor": "Jorge Luis Borges",
     "isbn": "9780245528798",
+    "borrado": false,
     "id": 3
   },
   {
     "titulo": "Los santos inocentes",
     "autor": "Miguel Delibes",
     "isbn": "9783351038786",
+    "borrado": false,
     "id": 4
   },
   {
     "titulo": "La Celestina",
     "autor": " Fernando de Rojas",
     "isbn": "9788431639211",
+    "borrado": false,
     "id": 5
   },
   {
     "titulo": "Niebla",
     "autor": "Miguel de Unamuno",
     "isbn": "9781450582506",
+    "borrado": false,
     "id": 6
   },
   {
     "titulo": "La sombra del cipres es alargada",
     "autor": "Miguel Delibes",
     "isbn": "9788423304134",
+    "borrado": false,
     "id": 7
   },
   {
     "titulo": "Nada",
     "autor": "Carmen Laforet",
     "isbn": "9788423336326",
+    "borrado": false,
     "id": 8
   },
   {
     "titulo": "Requiem por un campesino espanol",
     "autor": "Ramon J. Sender",
     "isbn": "9789871136483",
+    "borrado": false,
     "id": 9
   },
   {
     "titulo": "Lagrimas en la lluvia",
     "autor": "Rosa Montero",
     "isbn": "9782864249818",
+    "borrado": false,
     "id": 10
   },
   {
     "titulo": "Campos de Castilla",
     "autor": "Antonio Machado",
     "isbn": "9788420675763",
+    "borrado": false,
     "id": 11
   },
   {
     "titulo": "Luces de Bohemia",
     "autor": "Ramon Maria del Valle-Inclan",
     "isbn": "9788416968398",
+    "borrado": false,
     "id": 12
   },
   {
-    "titulo": "Cien a�os de soledad",
-    "autor": "Gabriel Garc�a M�rquez",
+    "titulo": "Cien años de soledad",
+    "autor": "Gabriel García Márquez",
     "isbn": "9780060114183",
+    "borrado": false,
     "id": 13
+  },
+  {
+    "titulo": "Titulo prueba",
+    "autor": "Rodrigo",
+    "isbn": "123",
+    "borrado": true,
+    "id": 14
   }
 ]

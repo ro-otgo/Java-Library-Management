@@ -110,26 +110,57 @@ public class ReservaSingleton {
 		return false;
 	}
 	
+	/**
+	 * Obtener reservas activas
+	 * @return
+	 */
 	public List<Reserva> getReservasActivas(){
 		return reservas.stream().filter(Reserva::isActive).collect(Collectors.toList());
 	}
 	
+	/**
+	 * Obtener reserva activa por libro, deberia existir solamente una.
+	 * @param libro
+	 * @return
+	 */
 	public List<Reserva> buscarReservaActivaPorLibro(Libro libro) {
 		return reservas.stream().filter(r -> libro.getId() == r.getIdLibro() && r.isActive()).collect(Collectors.toList());
 	}
 	
+	/**
+	 * Buscar reservas asociadas a un libro.
+	 * @param libro
+	 * @return
+	 */
 	public List<Reserva> buscarReservaPorLibro(Libro libro) {
 		return reservas.stream().filter(r -> libro.getId() == r.getIdLibro()).collect(Collectors.toList());
 	}
 	
+	/**
+	 * Buscar reservas activas de un usuario
+	 * @param usuario
+	 * @return
+	 */
 	public List<Reserva> buscarReservaActivaPorUsuario(Usuario usuario) {
 		return reservas.stream().filter(r -> usuario.getiIdUsuario().equals(r.getIdUsuario()) && r.isActive()).collect(Collectors.toList());
 	}
 	
+	/**
+	 * Buscar todas las reservas de un usuario
+	 * @param usuario
+	 * @return
+	 */
 	public List<Reserva> buscarReservaPorUsuario(Usuario usuario) {
 		return reservas.stream().filter(r -> usuario.getiIdUsuario().equals(r.getIdUsuario())).collect(Collectors.toList());
 	}
 	
+	/**
+	 * Buscar la reserva activa de un usuario y de un libro.
+	 * Trata de averiguar si un usuario y un libro estan asociados mediatne una reserva activa.
+	 * @param usuario
+	 * @param libro
+	 * @return
+	 */
 	public Optional<Reserva> buscarReservaActivaPorUsuarioLibro(Usuario usuario, Libro libro) {
 		return reservas.stream().filter(r -> usuario.getiIdUsuario().equals(r.getIdUsuario()) && r.isActive() && libro.getId() == r.getIdLibro()).findFirst();
 	}
